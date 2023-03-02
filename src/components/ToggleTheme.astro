@@ -1,0 +1,54 @@
+---
+---
+
+<button class="toggle-theme toggle-theme-blackboard" data-theme="blackboard"
+></button>
+<button class="toggle-theme toggle-theme-whiteboard" data-theme="whiteboard"
+></button>
+<!--
+  <button class="toggle-theme toggle-theme-synthy" data-theme="synthy"></button>
+-->
+  <button class="toggle-theme toggle-theme-nerdy" data-theme="nerdy"></button>
+
+<style>
+  .toggle-theme {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  .toggle-theme-blackboard {
+    background-image: linear-gradient(-45deg, #0e0e0e 48%, #2a2a2a 52%);
+  }
+  .toggle-theme-whiteboard {
+    background-image: linear-gradient(-45deg, #b4b4b4 48%, #ffffff 52%);
+  }
+  .toggle-theme-synthy {
+    background-image: linear-gradient(-45deg, #666c9d 48%, #917491 52%);
+  }
+  .toggle-theme-nerdy {
+    background-image: linear-gradient(-45deg, #050505 48%, #15dd15 52%);
+  }
+</style>
+
+<script>
+  function setTheme(theme: string) {
+    if (theme == "") {
+      // load default from local storage, or default
+      theme = localStorage.getItem("theme") || "blackboard";
+    }
+    console.log("setTheme(", theme, ")");
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }
+
+  // iterate over all of our toggle-theme buttons and add an event listener
+  // NOTE: using 'querySelectorAll' is fine even with multiple components, since the script is bundled and only ran once, not per component
+  document.querySelectorAll(".toggle-theme").forEach((button) => {
+    button.addEventListener("click", () => {
+      setTheme(button.getAttribute("data-theme")!);
+    });
+  });
+
+  // set the theme on load
+  setTheme("");
+</script>

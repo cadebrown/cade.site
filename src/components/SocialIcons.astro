@@ -1,0 +1,119 @@
+---
+// for social icon SVGs, I download from: https://fontawesome.com/v5/search
+import { getAuthorData } from "../consts";
+
+const { author } = Astro.props;
+
+const authorData = getAuthorData(author);
+---
+
+<div class="social-icons-wrapper">
+
+  <!--
+
+  {
+    authorData.website && (
+      <a
+        href={`{authorData.website}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon"
+      >
+        <img src="/images/house.svg" alt="website" />
+      </a>
+    )
+  }
+   -->
+
+  {
+    authorData.email && (
+      <a
+        href={`mailto:${authorData.email}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon social-icon-email"
+      >
+        <img src="/images/paper-plane.svg" alt="email" />/{authorData.email}
+      </a>
+    )
+  }
+  {
+    authorData.github && (
+      <a
+        href={`https://github.com/${authorData.github}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon social-icon-github"
+      >
+        <img src="/images/github.svg" alt="github" />/{authorData.github}
+      </a>
+    )
+  }
+  {
+    authorData.twitter && (
+      <a
+        href={`https://twitter.com/${authorData.twitter}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon social-icon-twitter"
+      >
+        <img src="/images/twitter.svg" alt="twitter" />
+        /@{authorData.twitter}
+      </a>
+    )
+  }
+  {
+    authorData.instagram && (
+      <a
+        href={`https://instagram.com/${authorData.instagram}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-icon social-icon-instagram"
+      >
+        <img src="/images/instagram.svg" alt="instagram" />
+        /@{authorData.instagram}
+      </a>
+    )
+  }
+</div>
+
+<style>
+  .social-icons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* on small screens, stack column wise */
+  @media (max-width: 768px) {
+    .social-icons-wrapper {
+      flex-direction: column;
+    }
+  } 
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.8em;
+    text-decoration: none;
+    color: var(--color-header-link);
+  }
+  .social-icon img {
+    width: 28px;
+    height: 28px;
+  }
+  /* rainbow colors */
+  .social-icon-email {
+    filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(-40deg);
+  }
+  .social-icon-github {
+    filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(60deg);
+  }
+  .social-icon-twitter {
+    filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(140deg);
+  }
+  .social-icon-instagram {
+    filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(210deg);
+  }
+</style>

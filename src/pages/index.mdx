@@ -1,0 +1,53 @@
+import DictValue from "../components/DictValue.astro";
+import DictKey from "../components/DictKey.astro";
+import Image from "../components/Image.astro";
+import DictList from "../components/DictList.astro";
+
+import SiteTitle from "../components/SiteTitle.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Text from "../components/Text.astro";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_AUTHOR,
+  SITE_DATE,
+  SITE_KEYWORDS,
+  SITE_IMAGE,
+} from "../consts";
+
+<BaseLayout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  author={SITE_AUTHOR}
+  date={SITE_DATE}
+  keywords={SITE_KEYWORDS}
+  image={SITE_IMAGE}
+>
+  <Header title={SITE_TITLE} />
+  <main>
+    <center>
+      <SiteTitle />
+      <div class="index-main">
+
+        <Image src="/images/cade-face.webp"/>
+
+        Hey! I'm Cade Brown and this is [{SITE_TITLE}](/), my personal blog. I mainly write about machine learning, programming languages/compilers, and data-driven art. I also document projects I'm working on, and cool tricks I've learned along the way.
+
+        My full biography lives at [/about](/about).
+
+        **Recruiters**: check out my [LinkedIn](https://www.linkedin.com/in/cade-brown/), [resume](/resume-CadeBrown.pdf) and [CV](/cv-CadeBrown.pdf). I'm seeking a position for post-graduation (May 2023).
+
+        On this website, you can find:
+
+          * [/blog](/blog) - all my blog posts
+          * [/about](/about) - my full biography
+          * [/links](/links) - useful resources
+
+      </div>
+    </center>
+
+  </main>
+  <Footer />
+</BaseLayout>

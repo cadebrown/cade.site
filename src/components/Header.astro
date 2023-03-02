@@ -1,0 +1,28 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<header>
+  <nav>
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/blog">Blog</HeaderLink>
+    <HeaderLink href="/about">About</HeaderLink>
+    <HeaderLink href="/links">Links</HeaderLink>
+  </nav>
+</header>
+<style>
+  header {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--color-header);
+  }
+  nav {
+    padding: 0.5em;
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
+</style>

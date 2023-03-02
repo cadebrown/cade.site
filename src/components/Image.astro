@@ -1,0 +1,23 @@
+---
+
+
+const { src } = Astro.props;
+
+---
+<img class="float-right" src={src} />
+
+<style>
+.float-right {
+  float: right;
+  /*max-width: 80vw;*/
+  margin: 0.5em 0.0em 0.5em 1.0em;
+
+  display: block;
+  max-width: 42%;
+}
+img {
+  /*
+  max-width: 40%;
+  max-height: 50vh;*/
+}
+</style>
