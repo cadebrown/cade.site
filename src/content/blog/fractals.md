@@ -1,0 +1,57 @@
+---
+title: "How To Render Fractal Geometry"
+description: "A personal obsession of mine, explained in depth."
+author: "Cade Brown"
+date: "2021-04-01:00:00:00"
+keywords: "math, hardware"
+image: "/assets/fractals/mandelbrot.webp"
+---
+
+[Fractals](https://en.wikipedia.org/wiki/Fractal) have interested me since I was very young. I've always been fascinated by the idea of self-similarity, and the fact that you can zoom in infinitely on a fractal and still see the same pattern. They seem like a glitch in the universe -- given a small and finite set of rules, you can generate seemingly infinite complexity. How does $ z \to z^2 + c $ create the above image?
+
+These are some various renderings of fractals that I've done, using software I've written
+
+<!--more-->
+## Software
+
+  * [fractalrender](https://github.com/chemicaldevelopment/fractalrender), a program I've written (and rewritten FAR too many times...) to render high quality images/videos of fractals
+  * [fractalexplorer](https://github.com/simplesummit/fractalexplorer): a realtime
+    * check out a [YouTube video made with it](https://youtu.be/vUrKn34JoRg)
+    * check out the [blog post about it](https://simplesummit.github.io/blog/fractalexplorer)
+
+## Videos
+
+<center>
+  <iframe width="800" height="450" src="https://www.youtube.com/embed/ynSdQAhDoWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+
+## Images
+
+### FractalRender output
+
+![FractalRender #0](/assets/fractals/mandelbrot.webp)
+
+![FractalRender #1](/assets/fractals/mandelbrot-elephant-0.webp)
+
+
+![FractalRender #2](/assets/fractals/mandelbrot-elephant-1.webp)
+
+![FractalRender #3](/assets/fractals/mandelbrot-scepter.webp)
+
+
+## 3D Prints
+
+![Mandelbrot 3D print](/assets/fractals/mandelbrot-3d.webp)
+
+This is a 3D print of the Mandelbrot set. I generated the model with a Python script inside of Blender.
+
+
+## Meta
+
+![Me at ISEF 2018](/assets/cade/cade-isef-0.webp)
+
+This is also me, overlooking some nice scenery (note the Mandelbrot tie)
+
+![Me at ISEF 2018](/assets/cade/cade-isef-1.webp)
+
+This is me at ISEF 2018, presenting my work after winning Grand Reserve Champion at SASEF 2018. (note the Mandelbrot shirt)

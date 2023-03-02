@@ -4,7 +4,7 @@ description: "Sometimes it's fun to peek under the hood."
 author: "Cade Brown"
 date: "2020-08-05:00:00:00"
 keywords: "math"
-image: "/images/knuth.webp"
+image: "/assets/knuth.webp"
 ---
 
 ```python

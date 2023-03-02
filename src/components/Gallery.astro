@@ -1,0 +1,10 @@
+---
+import Image from "../components/Image.astro";
+
+
+const { filenames } = Astro.props;
+---
+
+{filenames.map((filename) => (
+  <Image src={filename} />
+))}

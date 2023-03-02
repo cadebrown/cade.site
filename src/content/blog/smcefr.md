@@ -4,7 +4,7 @@ description: "Open science dataset for machine learning and analysis."
 author: "Cade Brown"
 date: "2022-05-01:00:00:00"
 keywords: "data, science"
-image: "/images/smcefr-miniset.webp"
+image: "/assets/smcefr.webp"
 ---
 
 I was asked to sponsor a dataset for [ORNL's Smoky Mountain Conference](https://smc-datachallenge.ornl.gov/), in addition to posing a number of challenge questions. Then, researchers of all levels (undergrad to post-grad and beyond) were invited to investigate the dataset and write papers about their findings.
@@ -21,7 +21,7 @@ I am also a reviewer and judge for the papers, so I will be reading and grading 
 <p>Link to downloads: <a href="https://github.com/cadebrown/smcefr/releases" class="uri">https://github.com/cadebrown/smcefr/releases</a></p>
 <h1 id="introduction">Introduction</h1>
 <figure>
-<img src="https://cade.site/files/smcefr/miniset.jpg" id="smcefr-18" alt="" /><figcaption>Figure 1: A sample of 18 images from the <code>smcefr-mini</code> dataset</figcaption>
+<img src="/assets/smcefr.webp" id="smcefr-18" alt="" /><figcaption>Figure 1: A sample of 18 images from the <code>smcefr-mini</code> dataset</figcaption>
 </figure>
 <p>Satellite data is important for many environmental sciences, as they give scientists a bird’s eye view of large areas of the Earth. Modern orbital sensor allow them to collect additional research input remotely with high precision in order to emply data-intensive analysis workflows. For example, the Sentinel-3 satellite collects images that are used by scientists for a wide variety of research tasks, such as monitoring ocean and land surface temperatures, bootstrapping models for weather forecasts or atmospheric conditions’ prediction, and modeling and predicting climate change.</p>
 <p>However, in its original form, the data size and the format are unwieldy for rapid data exploration. Our goal was to remedy this by simplifying the dataset. To this end, it has been prepossessed to use a more approachable format, which is described in Section <a href="#DS" data-reference-type="ref" data-reference="DS">2</a>, but here is a brief overview:</p>
@@ -46,7 +46,7 @@ I am also a reviewer and judge for the papers, so I will be reading and grading 
 <h2 id="filename-schema">Filename Schema</h2>
 <p>For clear identification, the PNG images in the dataset are named by followiing a strict scheme and the details of the format are described in Figure <a href="#sen3-fname" data-reference-type="ref" data-reference="sen3-fname">2</a>. Although this information is auxiliary for most intended processing scenarios, it could serve as additional input and guide supervision during training.</p>
 <figure>
-<img src="https://cade.site/files/smcefr/filename.png" id="sen3-fname" alt="" /><figcaption>Figure 2: Sentinel-3 Generic Filename Schema Image</figcaption>
+<img src="/assets/smcefr-filename.webp" id="sen3-fname" alt="" /><figcaption>Figure 2: Sentinel-3 Generic Filename Schema Image</figcaption>
 </figure>
 <h2 id="accessing-dataset">Accessing Dataset</h2>
 <p>Our dataset is available for download on GitHub <a href="#R1">[1]</a>. The dowload is compact: it is a single Tar file compressed with Gzip (<a href="https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view">smcefr-full.tar.gz</a>). The location of the file is <a href="https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view">https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view</a> and it can be expanded with the command:</p>

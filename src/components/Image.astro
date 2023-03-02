@@ -4,7 +4,8 @@
 const { src } = Astro.props;
 
 ---
-<img class="float-right" src={src} />
+<img src={src} alt={"image: " + src} />
+<!--<img class="float-right" src={src} alt={"image: " + src} />-->
 
 <style>
 .float-right {

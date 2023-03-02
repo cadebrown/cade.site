@@ -4,7 +4,7 @@ description: "Number of nonzero digits in representation of n in primorial base.
 author: "Cade Brown"
 date: "2020-10-01:00:00:00"
 keywords: "math, hardware"
-image: "/images/dla-amd-gpus-fig5.webp"
+image: "/assets/dla-amd-gpus-fig5.webp"
 ---
 
 I published my first paper **Design, Optimization, and Benchmarking of Dense Linear Algebra Algorithms on AMD GPUs**, which was published in [IEEE HPEC 2020](https://ieee-hpec.org/). This was a major project of mine at [ICL](https://icl.utk.edu) that aimed to take the existing [MAGMA](https://icl.utk.edu/magma/index.html) library that ran on NVIDIA GPUs, and port it to AMD GPUs. Specifically, it needed to work on the [Frontier supercomputer at ORNL](https://en.wikipedia.org/wiki/Frontier_(supercomputer)), which has AMD GPUs.

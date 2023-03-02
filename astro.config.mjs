@@ -28,18 +28,18 @@ export default defineConfig({
       wrap: true
     },
     remarkPlugins: [remarkMath
-    //remarkRehype,
+      //remarkRehype,
     ],
 
     rehypePlugins: [rehypeSlug,
-    // This adds links to headings
-    [rehypeAutolinkHeadings, autolinkConfig],
-    // Tweak GFM task list syntax
-    //rehypeTasklistEnhancer(),
-    // Translates the autolink headings anchors
-    //rehypei18nAutolinkHeadings(),
-    [rehypeKatex, {
-      displayMode: true
-    }]]
+      // This adds links to headings
+      [rehypeAutolinkHeadings, autolinkConfig],
+      // Tweak GFM task list syntax
+      //rehypeTasklistEnhancer(),
+      // Translates the autolink headings anchors
+      //rehypei18nAutolinkHeadings(),
+      [rehypeKatex, {
+        displayMode: true
+      }]]
   }
 });

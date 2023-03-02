@@ -4,7 +4,7 @@ description: "Analysis of the parts I chose, and how I built it."
 author: "Cade Brown"
 date: "2023-02-28:00:00:00"
 keywords: "hardware"
-image: "/images/knuth.webp"
+image: "/assets/knuth.webp"
 ---
 
 # Specifications
@@ -20,7 +20,7 @@ It's been ~4 years since I've built a computer, and the new generation of CPUs a
 
 I wanted a machine that I could use for machine learning, as well as normal programming, and gaming for recreation. Also, I had some money still burning a hole in my pocket from my NVIDIA internship, so I decided to splurge a bit. The 4090 is a beast for both ML and gaming, and the 7950x is a beast for production. 
 
-![All the boxes for Knuth](/images/knuth-boxes.webp)
+![All the boxes for Knuth](/assets/knuth-boxes.webp)
 
 # Building
 
