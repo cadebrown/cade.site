@@ -12,6 +12,34 @@ import {
 
 //import "../styles/global.css";
 
+// import CSS, so it is bundled inline
+import '../styles/global.css';
+import '../styles/katex.min.css';
+import '../styles/Roboto.css';
+
+/* OLD WAY: import CSS in HTML
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto"
+  />
+
+  <link
+    rel="stylesheet"
+    href="/styles/global.css"
+  />
+
+
+  <!-- KaTeX: math formatting -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+    crossorigin="anonymous"
+  />
+
+*/
+
 export interface Props {
   title: string;
   description?: string;
@@ -35,6 +63,7 @@ const {
 ---
 
 <head>
+
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -50,25 +79,6 @@ const {
 
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />
-
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto"
-  />
-
-  <link
-    rel="stylesheet"
-    href="/styles/global.css"
-  />
-
-
-  <!-- KaTeX: math formatting -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-    crossorigin="anonymous"
-  />
 
   <!-- Primary Meta Tags -->
   <title>{title}</title>
@@ -90,4 +100,6 @@ const {
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+
 </head>
