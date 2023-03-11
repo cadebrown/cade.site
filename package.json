@@ -16,6 +16,7 @@
 		"@astrojs/sitemap": "^1.1.0",
 		"astro": "^2.0.15",
 		"rehype-katex": "^6.0.2",
+		"remark-definition-list": "^1.2.0",
 		"remark-math": "^5.1.1",
 		"remark-rehype": "^10.1.0"
 	},

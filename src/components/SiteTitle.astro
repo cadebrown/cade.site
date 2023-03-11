@@ -6,7 +6,7 @@ import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   <center>
     <span class="title">{SITE_TITLE}</span>
     <hr />
-    <i>{SITE_DESCRIPTION}</i>
+    <span class="description"><i>{SITE_DESCRIPTION}</i></span>
   </center>
 </div>
 <style>
@@ -20,4 +20,19 @@ import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE } from "../consts";
     margin: 0;
     padding: 0;
   }
+
+  .description {
+    font-size: 1.08rem;
+  }
+  
+  center {
+  }
+
+  /* on small screens, stack column wise */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.2rem;
+    }
+  } 
+
 </style>

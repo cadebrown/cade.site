@@ -36,14 +36,17 @@ const posts = (await getCollection("blog")).sort(
   }
   ul li {
     display: flex;
+    padding: 0.25em 0;
   }
   ul li :global(time) {
-    flex: 0 0 130px;
+    /* have column that  */
+    min-width: 130px;
+    /*flex: 0 0 120px;*/
     /*color: #c4c4c4;*/
 
   }
   ul li a:visited {
-    color: #8e32dc;
+    /*color: #8e32dc;*/
   }
   .blog-all-title {
     font-size: 1.5rem;

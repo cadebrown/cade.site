@@ -7,6 +7,7 @@ import { autolinkConfig } from './plugins/rehype-autolink-config';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
+import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
 
 // https://astro.build/config
 
@@ -27,8 +28,13 @@ export default defineConfig({
       // Enable word wrap to prevent horizontal scrolling
       wrap: true
     },
-    remarkPlugins: [remarkMath
-      //remarkRehype,
+    remarkPlugins: [remarkMath,
+      remarkDefinitionList,
+      [remarkRehype, {
+        handlers: {
+          ...defListHastHandlers,
+        }
+      }],
     ],
 
     rehypePlugins: [rehypeSlug,

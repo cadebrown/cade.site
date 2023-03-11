@@ -48,10 +48,10 @@ This is a 3D print of the Mandelbrot set. I generated the model with a Python sc
 
 ## Meta
 
-![Me at ISEF 2018](/assets/cade/cade-isef-0.webp)
+![Me at ISEF 2018](/assets/cade-isef-0.webp)
 
 This is also me, overlooking some nice scenery (note the Mandelbrot tie)
 
-![Me at ISEF 2018](/assets/cade/cade-isef-1.webp)
+![Me at ISEF 2018](/assets/cade-isef-1.webp)
 
 This is me at ISEF 2018, presenting my work after winning Grand Reserve Champion at SASEF 2018. (note the Mandelbrot shirt)

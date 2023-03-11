@@ -27,10 +27,10 @@ const authorData = getAuthorData(author);
 
 <div class="page-title">
   <center>
-    {image && <img src={image} alt="" />}
+    {image && <img class="page-image" src={image} alt="" />}
 
-    <span class="title">{title}</span>
-    <hr />
+    <h1 class="title">{title}</h1>
+
     {
       author && (
         <div>
@@ -41,24 +41,30 @@ const authorData = getAuthorData(author);
     }
 
     {date && <FormatDate date={date} />}
+
+    <hr />
   </center>
 </div>
 
 <style>
+  /*
   .page-title {
-    margin: 1em 0;
+    margin: 0.5em 2.5em;
+  }*/
+
+  img {
+    margin: 0 auto;
   }
-  
+
   .author {
     font-weight: bold;
   }
 
   .title {
-    font-size: 1.7em;
+    /*font-size: 1.7em;*/
+    line-height: 2.35rem;
+    margin-top: 0.7em;
+    margin-bottom: 0.4em;
     font-weight: 600;
-  }
-
-  img {
-    margin: 1em;
   }
 </style>

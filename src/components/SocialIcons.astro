@@ -5,26 +5,25 @@ import { getAuthorData } from "../consts";
 const { author } = Astro.props;
 
 const authorData = getAuthorData(author);
----
 
-<div class="social-icons-wrapper">
-
-  <!--
-
+/* if this isn't your website, paste this in lower
   {
     authorData.website && (
       <a
         href={`{authorData.website}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-icon"
+        class="social-icon social-icon-house"
       >
-        <img src="/assets/house.svg" alt="website" />
+        <img src="/assets/house.svg" alt="website" />&middot;{authorData.website.replace(/(^\w+:|^)\/\//, "")}
       </a>
     )
   }
-   -->
 
+*/
+---
+
+<div class="social-icons-wrapper">
   {
     authorData.email && (
       <a
@@ -89,7 +88,7 @@ const authorData = getAuthorData(author);
     .social-icons-wrapper {
       flex-direction: column;
     }
-  } 
+  }
 
   .social-icon {
     display: flex;
@@ -102,8 +101,12 @@ const authorData = getAuthorData(author);
   .social-icon img {
     width: 28px;
     height: 28px;
+    margin: 0 !important;
   }
   /* rainbow colors */
+  .social-icon-house {
+    filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(-100deg);
+  }
   .social-icon-email {
     filter: invert(0.5) sepia(1) saturate(5) brightness(0.7) hue-rotate(-40deg);
   }

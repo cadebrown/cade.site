@@ -4,25 +4,25 @@ import HeaderLink from "./HeaderLink.astro";
 
 <header>
   <nav>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="/links">Links</HeaderLink>
+    <HeaderLink href="/">cade.site</HeaderLink>
+    <HeaderLink href="/blog">/blog</HeaderLink>
+    <HeaderLink href="/links">/links</HeaderLink>
   </nav>
 </header>
 <style>
   header {
-    margin: 0;
+    margin: 0.25em 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    background-color: var(--color-header);
   }
   nav {
     padding: 0.5em;
   }
-  h2 {
-    margin: 0.5em 0;
+
+  .header-site-name {
+    font-size: 1.25em;
+    font-weight: 800;
   }
 </style>

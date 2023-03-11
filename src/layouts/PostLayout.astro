@@ -1,34 +1,7 @@
 ---
-import {
-  DEFAULT_TITLE,
-  DEFAULT_DESCRIPTION,
-  DEFAULT_AUTHOR,
-  DEFAULT_DATE,
-  DEFAULT_KEYWORDS,
-  DEFAULT_IMAGE,
-  getAuthorData,
-SITE_TITLE,
-SITE_DESCRIPTION,
-} from "../consts";
 import PageLayout from "./PageLayout.astro";
-
-const {
-  title = DEFAULT_TITLE,
-  description = DEFAULT_DESCRIPTION,
-  author = DEFAULT_AUTHOR,
-  date = DEFAULT_DATE,
-  keywords = DEFAULT_KEYWORDS,
-  image = DEFAULT_IMAGE,
-} = Astro.props;
 ---
 
-<PageLayout
-  title={title}
-  description={description}
-  author={author}
-  date={date}
-  keywords={keywords}
-  image={image}
->
+<PageLayout {...Astro.props}>
   <slot />
 </PageLayout>

@@ -76,6 +76,15 @@ export const SITE_DATE = new Date()
 export const SITE_KEYWORDS = "computing, programming, philosophy, music, art, science, technology"
 export const SITE_IMAGE = "/placeholder-hero.jpg"
 
+export const SITE_FRONTMATTER = {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    author: SITE_AUTHOR,
+    date: SITE_DATE,
+    keywords: SITE_KEYWORDS,
+    image: SITE_IMAGE, 
+};
+
 
 /// Default Props (if none are given) ///
 
@@ -86,6 +95,21 @@ export const DEFAULT_DATE = undefined
 export const DEFAULT_KEYWORDS = SITE_KEYWORDS
 export const DEFAULT_IMAGE = undefined
 
+export const DEFAULT_FRONTMATTER = {
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    author: DEFAULT_AUTHOR,
+    date: DEFAULT_DATE,
+    keywords: DEFAULT_KEYWORDS,
+    image: DEFAULT_IMAGE,
+};
 
 
-
+// helper function to get frontmatter from possibly undefined data
+export const getFrontmatter = (data = {}) => {
+    // merge the default frontmatter with the given data
+    return {
+        ...DEFAULT_FRONTMATTER,
+        ...data,
+    }
+}

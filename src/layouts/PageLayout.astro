@@ -4,26 +4,14 @@ import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Title from "../components/Title.astro";
+import TOC from "../components/TOC.astro";
 
-import {
-  DEFAULT_TITLE,
-  DEFAULT_DESCRIPTION,
-  DEFAULT_AUTHOR,
-  DEFAULT_DATE,
-  DEFAULT_KEYWORDS,
-  DEFAULT_IMAGE,
-  getAuthorData,
-  SITE_TITLE,
-} from "../consts";
+import { SITE_TITLE, getFrontmatter } from "../consts";
 
-const {
-  title = DEFAULT_TITLE,
-  description = DEFAULT_DESCRIPTION,
-  author = DEFAULT_AUTHOR,
-  date = DEFAULT_DATE,
-  keywords = DEFAULT_KEYWORDS,
-  image = DEFAULT_IMAGE,
-} = Astro.props;
+const { frontmatter, headings } = Astro.props;
+
+const { title, description, author, date, keywords, image } =
+  Astro.props.frontmatter || Astro.props;
 ---
 
 <BaseLayout
@@ -36,7 +24,7 @@ const {
 >
   <Header />
 
-  <Title 
+  <Title
     title={title}
     description={description}
     author={author}
@@ -44,10 +32,54 @@ const {
     keywords={keywords}
     image={image}
   />
+
   <main>
-    <article>
-      <slot />
-    </article>
+    {
+      headings && (
+        <aside>
+          <center>Table of Contents</center>
+          <hr />
+          <TOC headings={headings} />
+        </aside>
+      )
+    }
+    <section>
+      <article>
+        <slot />
+      </article>
+    </section>
   </main>
+
   <Footer />
 </BaseLayout>
+<style>
+  .scrolly {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  aside {
+    width: 75%;
+    margin: 1em auto;
+    padding: 1em;
+  }
+
+  @media only screen and (min-width: 1000px) {
+    aside {
+      position: -webkit-sticky;
+      position: sticky;
+      width: clamp(280px, 24vw, 400px);
+      background: var(--color-background);
+      top: 0.25em;
+      right: 0.25em;
+      float: right;
+      margin: 0.25em;
+      padding: 0.25em;
+    }
+
+    article {
+      border-right: 1px solid var(--color-outline);
+    }
+  }
+</style>

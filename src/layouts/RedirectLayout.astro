@@ -1,15 +1,6 @@
 ---
-import Head from "../components/Head.astro";
-import {
-  DEFAULT_TITLE,
-  DEFAULT_DESCRIPTION,
-  DEFAULT_AUTHOR,
-  DEFAULT_DATE,
-  DEFAULT_KEYWORDS,
-  DEFAULT_IMAGE,
-} from "../consts";
-
-const { title = DEFAULT_TITLE, to } = Astro.props;
+// get location from frontmatter or props
+const { to } = Astro.props.frontmatter || Astro.props;
 ---
 
 <html lang="en">

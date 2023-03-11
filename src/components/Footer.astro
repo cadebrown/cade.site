@@ -7,8 +7,6 @@ const today = new Date();
 ---
 
 <footer>
-  <!-- Social links with icons, arranged side by side and center aligned. They use local SVGs downloaded as source -->
-
   <div class="footer-item">
     <SocialIcons author={SITE_AUTHOR} />
   </div>
@@ -24,12 +22,8 @@ const today = new Date();
     margin: 1.0em 0;
   }
   footer {
-    padding: 10px 0 25px 0;
     text-align: center;
     background-color: var(--color-background-alt);
     box-shadow: 0 50vh 0 50vh var(--color-background-alt);
-
-    /* TODO: sticky footer, global through site: https://css-tricks.com/couple-takes-sticky-footer/ */
-    /*flex-shrink: 0;*/
   }
 </style>
