@@ -1,10 +1,10 @@
 ---
-import Figure from "../components/Figure.astro";
+import MyFigure from "../components/MyFigure.astro";
 
 
 const { filenames } = Astro.props;
 ---
 
 {filenames.map((filename) => (
-  <Figure src={filename} />
+  <MyFigure src={filename} />
 ))}

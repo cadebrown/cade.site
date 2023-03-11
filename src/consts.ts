@@ -1,6 +1,8 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
+import type { ImageMetadata } from "astro/dist/assets/types"
+
 /* ideas for site names: (don't include any duplicates)
 
 cade.site
@@ -64,6 +66,28 @@ export const formatDate = (date: Date) => {
     })*/
 }
 
+const assets = import.meta.glob([
+    './assets/*',
+    './assets/*/*',
+], { 
+    import: 'default' 
+})
+
+// attempts to import an asset, given its path (/assets/...), returns the default export or undefined if it wasn't statically located
+export const tryImportAsset = async (src: string) => {
+    //console.log("ASSETS", assets)
+
+    // construct a key. since we assume we are given '/assets/...', we can just prepend a '.' to it to import locally (from 'consts.ts' is where we are globbing from)
+    const key = "." + src
+    //console.log("KEY", key)
+    if (key in assets) {
+        // found an asset, so call the promise and return the result
+        return (await assets[key]())
+    }
+
+    // not valid asset, so return it
+    return undefined
+}
 
 /// Site Props (global props) ///
 
@@ -82,7 +106,7 @@ export const SITE_FRONTMATTER = {
     author: SITE_AUTHOR,
     date: SITE_DATE,
     keywords: SITE_KEYWORDS,
-    image: SITE_IMAGE, 
+    image: SITE_IMAGE,
 };
 
 

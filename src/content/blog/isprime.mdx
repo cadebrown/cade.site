@@ -6,15 +6,12 @@ date: "2021-09-03:00:00:00"
 keywords: "math"
 image: "/assets/isprime-chart-1.webp"
 ---
-import { Code } from 'astro/components';
 
 We've all had to include a little `isprime()` function in our code, right? (well, most people reading my blog probably have). In this article i provide an implementation of a primality test (in C) that is quite a bit faster for larger values, and is still easily embeddable and usable within existing applications
 
 ## Naive Implementation
 
 Most programmers, when asked to check whether a number is prime, would probably write some code like the following (myself included):
-
-<Code code={`const foo = 'bar';`} lang="js" />
 
 ```c
 // check whether 'n' is prime, using a naive method

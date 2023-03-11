@@ -9,12 +9,11 @@ import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
 import image from "@astrojs/image";
-
 import { imagesPlugin } from './plugins/images-plugin';
-
 const katexConfig: katex.KatexOptions = {
   //displayMode: true,
-}
+};
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,34 +34,26 @@ export default defineConfig({
       // Enable word wrap to prevent horizontal scrolling
       wrap: true
     },
-    remarkPlugins: [
-      remarkDefinitionList,
-      remarkMath,
-      //remarkRehype,
-      /*
-      [remarkRehype, {
-        handlers: {
-          ...defListHastHandlers
-        }
-      }],
-      */
-    ],
+    remarkPlugins: [remarkDefinitionList, remarkMath
+    //remarkRehype,
+    /*
+    [remarkRehype, {
+      handlers: {
+        ...defListHastHandlers
+      }
+    }],
+    */],
 
-    rehypePlugins: [
-      rehypeSlug,
-      // add links to headings
-      [rehypeAutolinkHeadings, autolinkConfig],
-      // Tweak GFM task list syntax
-      //rehypeTasklistEnhancer(),
-      // Translates the autolink headings anchors
-      //rehypei18nAutolinkHeadings(),
-      [rehypeKatex, katexConfig]
-    ],
-
+    rehypePlugins: [rehypeSlug,
+    // add links to headings
+    [rehypeAutolinkHeadings, autolinkConfig],
+    // Tweak GFM task list syntax
+    //rehypeTasklistEnhancer(),
+    // Translates the autolink headings anchors
+    //rehypei18nAutolinkHeadings(),
+    [rehypeKatex, katexConfig]]
   },
   vite: {
-    plugins: [
-      imagesPlugin(),
-    ],
-  },
+    plugins: [imagesPlugin()]
+  }
 });

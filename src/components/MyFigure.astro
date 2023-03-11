@@ -1,0 +1,26 @@
+---
+import MyImage from "./MyImage.astro";
+const { src, alt, classes, caption = alt } = Astro.props;
+---
+
+<figure class={classes}>
+  <MyImage {...Astro.props} />
+  <figcaption>{caption}</figcaption>
+</figure>
+<style>
+  figcaption {
+    margin: 0 0.25em;
+  }
+
+  img {
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  /* named styles, see global.css for 'classes' */
+  @media only screen and (min-width: 768px) {
+    figure {
+      margin: 1em;
+    }
+  }
+</style>

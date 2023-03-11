@@ -10,7 +10,7 @@ import {
 } from "../consts";
 
 import FormatDate from "../components/FormatDate.astro";
-import Figure from "./Figure.astro";
+import MyFigure from "./MyFigure.astro";
 
 const {
   title = DEFAULT_TITLE,
@@ -30,7 +30,7 @@ const authorData = getAuthorData(author);
 
 <div class="page-title">
   <center>
-    {image && <Figure class="page-image" src={image} alt="" />}
+    {image && <MyFigure class="page-image" src={image} alt="" />}
 
     <h1 class="title">{title}</h1>
 

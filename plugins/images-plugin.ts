@@ -30,14 +30,15 @@ export function imagesPlugin(): PluginOption {
 		name: 'images-plugin',
 		enforce: 'pre',
 		transform(code: string, id: string): TransformResult | undefined {
-			if (id.endsWith('md') || id.endsWith('mdx')) {
-				// find raw components hook
+			//if (id.endsWith('md') || id.endsWith('mdx')) {
+			if (id.endsWith('mdx')) {
+					// find raw components hook
 				const hooks = code.match(REGEX_HOOK);
 
 				if (hooks?.length != 1) {
-					console.log("CODE:", code)
-					console.log("HOOKS:", hooks)
-					console.error("Could not find hook for components, to install custom image one")
+					//console.log("CODE:", code)
+					//console.log("HOOKS:", hooks)
+					console.error("Could not find hook for components, to install custom image one (in " + id + ")")
 					// throw error
 					return undefined
 				}
@@ -47,16 +48,14 @@ export function imagesPlugin(): PluginOption {
 				const importDepth = id.split("src/")[1].split("/").length - 1
 
 				const imports = {
-					'Figure': `import Figure from '${"../".repeat(importDepth)}components/Figure.astro';\n`
+					'MyFigure': `import MyFigure from '${"../".repeat(importDepth)}components/MyFigure.astro';\n`
 				}
 
 				// split on hook
 				const hook = hooks[0]
 				const [before, after] = code.split(hook);
-				const finalHook = hook.replace(/img\:(\"|\'|\w| )*/g, "img:Figure")
+				const finalHook = hook.replace(/img\:(\"|\'|\w| )*/g, "img:MyFigure")
 
-				// add import if not already there
-				//const imports = (code.indexOf('import Figure') >= 0 ? "" : "import Figure from '../components/Figure.astro';\n")
 				// append import definitions needed
 				let defs = ""
 				for (const [key, value] of Object.entries(imports)) {

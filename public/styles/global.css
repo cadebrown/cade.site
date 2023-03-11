@@ -157,7 +157,7 @@ img {
 	/*object-fit: cover;*/
 	object-fit: contain;
 
-	margin: 1em auto;
+	margin: 0;
 	display: block;
 	border-radius: 0.25em;
 }

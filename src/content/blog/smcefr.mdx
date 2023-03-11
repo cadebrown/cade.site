@@ -7,6 +7,8 @@ keywords: "data, science"
 image: "/assets/smcefr.webp"
 ---
 
+import MyFigure from '../../components/MyFigure.astro'
+
 I was asked to sponsor a dataset for [ORNL's Smoky Mountain Conference](https://smc-datachallenge.ornl.gov/), in addition to posing a number of challenge questions. Then, researchers of all levels (undergrad to post-grad and beyond) were invited to investigate the dataset and write papers about their findings.
 
 In order to do that, I chose to collect and process data from [the Sentinel-3 satellite missions](https://en.wikipedia.org/wiki/Sentinel-3), which is basically a bird's eye view of the Earth from space. The data is freely available, and I wrote a script to download it and process it into a format that is easy to work with. You can see the source code here: [cadebrown/smcefr](https://github.com/cadebrown/smcefr)
@@ -16,13 +18,12 @@ I am also a reviewer and judge for the papers, so I will be reading and grading 
 <h1 class="title">SMCEFR: Sentinel-3 Satellite Dataset</h1>
 <p class="author">Cade Brown <a href="mailto:cade@utk.edu" class="email">cade@utk.edu</a></p>
 <p class="author">Piotr Luszczek</p>
-</header>
+
+
 <p>Check out the source on GitHub: <a href="https://github.com/cadebrown/smcefr" class="uri">https://github.com/cadebrown/smcefr</a></p>
 <p>Link to downloads: <a href="https://github.com/cadebrown/smcefr/releases" class="uri">https://github.com/cadebrown/smcefr/releases</a></p>
 <h1 id="introduction">Introduction</h1>
-<figure>
-<img src="/assets/smcefr.webp" id="smcefr-18" alt="" /><figcaption>Figure 1: A sample of 18 images from the <code>smcefr-mini</code> dataset</figcaption>
-</figure>
+<MyFigure src="/assets/smcefr.webp" id="smcefr-18" alt="" caption="Figure 1: A sample of 18 images from the <code>smcefr-mini</code> dataset" />
 <p>Satellite data is important for many environmental sciences, as they give scientists a bird’s eye view of large areas of the Earth. Modern orbital sensor allow them to collect additional research input remotely with high precision in order to emply data-intensive analysis workflows. For example, the Sentinel-3 satellite collects images that are used by scientists for a wide variety of research tasks, such as monitoring ocean and land surface temperatures, bootstrapping models for weather forecasts or atmospheric conditions’ prediction, and modeling and predicting climate change.</p>
 <p>However, in its original form, the data size and the format are unwieldy for rapid data exploration. Our goal was to remedy this by simplifying the dataset. To this end, it has been prepossessed to use a more approachable format, which is described in Section <a href="#DS" data-reference-type="ref" data-reference="DS">2</a>, but here is a brief overview:</p>
 <p>SMCEFR: Sentinel-3 Satellite is a dataset consisting of 1024x1024 red-gree-blue (RGB) images generated from the Sentinel-3 satellite via the Ocean and Land Color Instrument (OLCI). In order to facilitate the competition challenge we applied simplifications to the original and reduced the data volume. This preprocessing created a subset of the data and produced RGB images that are easier to analyze with model prototypes using tools like Python and NumPy/Pillow modules or Tensorflow or OpenCV in C++ and many other modern image processing software. Our goal was to give the participants the ability to rapidly test and visualize their algorithms. Furthermore, we posed challenge questions to guide the potential research directions for the participants could explore to present their own insights. In particular, we encourage approaches originating from computer vision, numerical programming, and machine learning.</p>
@@ -45,9 +46,7 @@ I am also a reviewer and judge for the papers, so I will be reading and grading 
 </ul>
 <h2 id="filename-schema">Filename Schema</h2>
 <p>For clear identification, the PNG images in the dataset are named by followiing a strict scheme and the details of the format are described in Figure <a href="#sen3-fname" data-reference-type="ref" data-reference="sen3-fname">2</a>. Although this information is auxiliary for most intended processing scenarios, it could serve as additional input and guide supervision during training.</p>
-<figure>
-<img src="/assets/smcefr-filename.webp" id="sen3-fname" alt="" /><figcaption>Figure 2: Sentinel-3 Generic Filename Schema Image</figcaption>
-</figure>
+<MyFigure src="/assets/smcefr-filename.webp" id="sen3-fname" alt="" caption="Figure 2: Sentinel-3 Generic Filename Schema Image" />
 <h2 id="accessing-dataset">Accessing Dataset</h2>
 <p>Our dataset is available for download on GitHub <a href="#R1">[1]</a>. The dowload is compact: it is a single Tar file compressed with Gzip (<a href="https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view">smcefr-full.tar.gz</a>). The location of the file is <a href="https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view">https://drive.google.com/file/d/1HHSqd7LYi1npEqHD_frCgOSGa5VrvALy/view</a> and it can be expanded with the command:</p>
 <pre class="shell"><code>$ tar -xvf smcefr-full.tar.gz</code></pre>

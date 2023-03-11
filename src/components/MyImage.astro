@@ -3,43 +3,27 @@
 //import { Image } from "astro:assets";
 
 import { Image } from "@astrojs/image/components";
+import { tryImportAsset } from "../consts";
 // TODO: resolve with markdown
 
 // https://vkbansal.me/blog/resolving-images-astro-md/
-const { src, alt, caption, classes } = Astro.props;
+const { src, alt, classes, caption } = Astro.props;
 //const { width, height } = Astro.props;
 
-//import myimg from "../assets/knuth-boxes.webp";
-//console.log("src", src);
+// attempt to import the asset, otherwise we will use the src
+let asset = await tryImportAsset(src);
+//console.log("ASSET", asset)
 
-// dynamically import image
-let myimg = undefined;
-try {
-  myimg = (await import(".." + src /* @vite-ignore */)).default;
-} catch (e) {
-  console.log("ERROR:", e);
-}
 ---
 
 {
-  (myimg && <Image src={myimg} alt={alt} />) || (
-    <img src={src} alt={alt} />
-  )
+  asset && <Image src={asset} alt={alt} class={classes} /> || <img src={src} alt={alt} class={classes} />
 }
+
 <style>
-  figcaption {
-    margin: 0 0.25em;
-  }
 
   img {
-    margin-top: 0 !important;
-    margin-bottom: 0.5em !important;
-  }
-
-  /* named styles, see global.css for 'classes' */
-  @media only screen and (min-width: 768px) {
-    figure {
-      margin: 1em;
-    }
+    padding-top: 1.0em;
+    padding-bottom: 1.0em;
   }
 </style>
