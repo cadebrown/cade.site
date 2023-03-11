@@ -56,7 +56,7 @@ export const autolinkConfig: Options = {
         tabIndex: -1,
     },
     content: [
-        h('span.visually-hidden', ' permalink'),
+        //h('span.visually-hidden', ' permalink'),
         s(
             'svg.autolink-svg',
             {

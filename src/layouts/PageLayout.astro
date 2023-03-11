@@ -1,8 +1,9 @@
 ---
+import BaseLayout from "./BaseLayout.astro";
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
-import FormatDate from "../components/FormatDate.astro";
+import Title from "../components/Title.astro";
 
 import {
   DEFAULT_TITLE,
@@ -12,11 +13,8 @@ import {
   DEFAULT_KEYWORDS,
   DEFAULT_IMAGE,
   getAuthorData,
-SITE_TITLE,
+  SITE_TITLE,
 } from "../consts";
-import BaseLayout from "./BaseLayout.astro";
-import Text from "../components/Text.astro";
-import SiteTitle from "../components/SiteTitle.astro";
 
 const {
   title = DEFAULT_TITLE,
@@ -26,8 +24,6 @@ const {
   keywords = DEFAULT_KEYWORDS,
   image = DEFAULT_IMAGE,
 } = Astro.props;
-
-const authorData = getAuthorData(author);
 ---
 
 <BaseLayout
@@ -40,90 +36,18 @@ const authorData = getAuthorData(author);
 >
   <Header />
 
-  <!--<main class="content">
-    
-          <img width={720} height={360} src={image} alt="" />
-  
-  -->
-
+  <Title 
+    title={title}
+    description={description}
+    author={author}
+    date={date}
+    keywords={keywords}
+    image={image}
+  />
   <main>
-    {
-      image && (
-        <center>
-          <img src={image} alt="" />
-        </center>
-      )
-    }
-
-    <center>
-      <span class="title">{title}</span>
-    </center>
-
-    {
-      author && (
-        <center>
-          by <span class="author">{authorData.name}</span>
-          <a href={"mailto:" + authorData.email}>&lt;{authorData.email}&gt;</a>
-        </center>
-      )
-    }
-
-    {
-      date && (
-        <center>
-          <FormatDate date={date} />
-        </center>
-      )
-    }
-
-    <hr />
-    <article class="content">
-      <Text>
-        <slot />
-      </Text>
+    <article>
+      <slot />
     </article>
   </main>
   <Footer />
-  <style>
-    header {
-      /*margin: 0em 0 2em;*/
-      margin: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: column;
-      background-color: #e7ecef;
-    }
-    h2 {
-      margin: 0.5em 0;
-    }
-    .author {
-      font-weight: bold;
-    }
-    hr {
-      border-top: 1px solid #111;
-      margin: 1rem 0;
-    }
-
-    .title {
-      font-size: 1.7em;
-      font-weight: 600;
-    }
-    /*
-    .content {
-      background-color: var(--color-background);
-
-      border-radius: 0.5em;
-    }*/
-    article {
-      background-color: var(--color-background);
-      padding: 0.2em 1em;
-      border-radius: 0.5em;
-      font-size: 102%;
-      text-align: left;
-    }
-    img {
-      max-height:40vh;
-    }
-  </style>
 </BaseLayout>

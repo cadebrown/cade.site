@@ -16,8 +16,8 @@ const posts = (await getCollection("blog")).sort(
 <PageLayout
   title={`${SITE_TITLE} - All Posts`}
 >
-  <section>
-    <ul>
+<section>
+  <ul>
       {
         posts.map((post) => (
           <li>

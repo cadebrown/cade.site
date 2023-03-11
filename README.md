@@ -2,10 +2,10 @@
 
 This is my personal website, where I write about my work and personal interests. It's implemented with [Astro](https://astro.build), and meant to be minimal but opinionated. For example, the basic design philosophy is:
 
-* fast to load (lightweight)
-* using basic CSS, minimal JS for maximum portability
-* canonical URLs (no '.html', no convoluted paths, or trailing slashes)
-* no tracking, no ads, no analytics
+  * fast to load (lightweight)
+  * using basic CSS, minimal JS for maximum portability
+  * canonical URLs (no '.html', no convoluted paths, or trailing slashes)
+  * no tracking, no ads, no analytics
 
 You can read about it here: [cade.site/how-i-built-this-website](https://cade.site/how-i-built-this-website)
 

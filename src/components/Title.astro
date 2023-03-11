@@ -1,0 +1,64 @@
+---
+import {
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_AUTHOR,
+  DEFAULT_DATE,
+  DEFAULT_KEYWORDS,
+  DEFAULT_IMAGE,
+  getAuthorData,
+} from "../consts";
+
+import Image from "../components/Image.astro";
+
+import FormatDate from "../components/FormatDate.astro";
+
+const {
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  author = DEFAULT_AUTHOR,
+  date = DEFAULT_DATE,
+  keywords = DEFAULT_KEYWORDS,
+  image = DEFAULT_IMAGE,
+} = Astro.props;
+
+const authorData = getAuthorData(author);
+---
+
+<div class="page-title">
+  <center>
+    {image && <img src={image} alt="" />}
+
+    <span class="title">{title}</span>
+    <hr />
+    {
+      author && (
+        <div>
+          by <span class="author">{authorData.name}</span>
+          <a href={"mailto:" + authorData.email}>&lt;{authorData.email}&gt;</a>
+        </div>
+      )
+    }
+
+    {date && <FormatDate date={date} />}
+  </center>
+</div>
+
+<style>
+  .page-title {
+    margin: 1em 0;
+  }
+  
+  .author {
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 1.7em;
+    font-weight: 600;
+  }
+
+  img {
+    margin: 1em;
+  }
+</style>
