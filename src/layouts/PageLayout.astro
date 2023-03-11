@@ -7,6 +7,7 @@ import Title from "../components/Title.astro";
 import TOC from "../components/TOC.astro";
 
 import { SITE_TITLE, getFrontmatter } from "../consts";
+import Figure from "../components/Figure.astro";
 
 const { frontmatter, headings } = Astro.props;
 
@@ -35,7 +36,7 @@ const { title, description, author, date, keywords, image } =
 
   <main>
     {
-      headings && (
+      headings && headings.length > 0 && (
         <aside>
           <center>Table of Contents</center>
           <hr />

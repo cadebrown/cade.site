@@ -1,11 +1,13 @@
 ---
 import Head from "../components/Head.astro";
+
 import { getFrontmatter } from "../consts";
 
 const { frontmatter, headings } = Astro.props;
 
 const { title, description, author, date, keywords, image } =
   getFrontmatter(frontmatter);
+
 ---
 
 <html lang="en">

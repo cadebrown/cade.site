@@ -152,9 +152,31 @@ figure {
 img {
 	max-width: 100%;
 	max-height: 50vh;
+	width: 100%;
+	height: auto;
+	/*object-fit: cover;*/
+	object-fit: contain;
+
 	margin: 1em auto;
 	display: block;
 	border-radius: 0.25em;
+}
+
+/*  */
+@media only screen and (min-width: 768px) {
+
+	.float-right {
+		float: right;
+		max-width: 40%;
+		padding-left: 0.5em;
+	}
+
+	.float-left {
+		float: left;
+		max-width: 40%;
+		padding-right: 0.5em;
+	}
+
 }
 
 video {
@@ -193,6 +215,7 @@ h5 {
 h6 {
 	font-size: 1.14em;
 }
+
 article h1::before {
 	content: "# ";
 }
@@ -295,7 +318,6 @@ ul {
 	overflow: hidden;
 }
 
-
 @media only screen and (min-width: 640px) {
 
 	/*
@@ -317,7 +339,6 @@ ul {
 
 	overflow: hidden;
 }
-
 
 .autolink-svg {
 	/* change x y offset */

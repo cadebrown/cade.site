@@ -1,6 +1,6 @@
 import DictValue from "../components/DictValue.astro";
 import DictKey from "../components/DictKey.astro";
-import Image from "../components/Image.astro";
+import Figure from "../components/Figure.astro";
 import DictList from "../components/DictList.astro";
 
 import SiteTitle from "../components/SiteTitle.astro";
@@ -17,6 +17,7 @@ import {
   SITE_IMAGE,
 } from "../consts";
 
+
 <BaseLayout
   title={SITE_TITLE}
   description={SITE_DESCRIPTION}
@@ -30,18 +31,15 @@ import {
   <main>
     <section>
       <article>
-        <Image classes="float-right" src="/assets/cade-face-0.webp" caption="Me, my face, and I blah blah blah" />
+        <Figure classes="float-right" src={'/assets/cade-face-0.webp'} caption="Me, my face, and I blah blah blah" />
 
-        Hey! I'm Cade Brown and this is [{SITE_TITLE}](/), my personal blog. I mainly write about machine learning, programming languages/compilers, and data-driven art. I also document projects I'm working on, and cool tricks I've learned along the way.
-
-        My full biography lives at [/about](/about).
+        Hey! I'm Cade Brown and this is [{SITE_TITLE}](/), my personal blog. I mainly write about machine learning, programming languages/compilers, and data-driven art. I also document projects I'm working on with cool tricks/hacks I've found along the way.
 
         **Recruiters**: check out my [LinkedIn](https://www.linkedin.com/in/cade-brown/), [resume](/resume-CadeBrown.pdf) and [CV](/cv-CadeBrown.pdf). I'm seeking a position for post-graduation (May 2023).
 
         On this website, you can find:
 
           * [/blog](/blog) - all my blog posts
-          * [/about](/about) - my full biography
           * [/links](/links) - useful resources
 
       </article>

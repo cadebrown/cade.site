@@ -1,6 +1,7 @@
 ---
 // for social icon SVGs, I download from: https://fontawesome.com/v5/search
 import { getAuthorData } from "../consts";
+import MyImage from "./MyImage.astro";
 
 const { author } = Astro.props;
 
@@ -32,7 +33,7 @@ const authorData = getAuthorData(author);
         rel="noopener noreferrer"
         class="social-icon social-icon-email"
       >
-        <img src="/assets/paper-plane.svg" alt="email" />/{authorData.email}
+        <MyImage src="/assets/paper-plane.svg" alt="email" />/{authorData.email}
       </a>
     )
   }
@@ -44,7 +45,7 @@ const authorData = getAuthorData(author);
         rel="noopener noreferrer"
         class="social-icon social-icon-github"
       >
-        <img src="/assets/github.svg" alt="github" />/{authorData.github}
+        <MyImage src="/assets/github.svg" alt="github" />/{authorData.github}
       </a>
     )
   }
@@ -56,7 +57,7 @@ const authorData = getAuthorData(author);
         rel="noopener noreferrer"
         class="social-icon social-icon-twitter"
       >
-        <img src="/assets/twitter.svg" alt="twitter" />
+        <MyImage src="/assets/twitter.svg" alt="twitter" />
         /@{authorData.twitter}
       </a>
     )
@@ -69,14 +70,14 @@ const authorData = getAuthorData(author);
         rel="noopener noreferrer"
         class="social-icon social-icon-instagram"
       >
-        <img src="/assets/instagram.svg" alt="instagram" />
+        <MyImage src="/assets/instagram.svg" alt="instagram" />
         /@{authorData.instagram}
       </a>
     )
   }
 </div>
 
-<style>
+<style is:global>
   .social-icons-wrapper {
     display: flex;
     align-items: center;

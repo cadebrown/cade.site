@@ -4,13 +4,8 @@ description: "Sometimes it's fun to peek under the hood."
 author: "Cade Brown"
 date: "2020-08-05:00:00:00"
 keywords: "math"
-image: "/assets/knuth.webp"
+image: "/assets/diy-gamma-zeta.webp"
 ---
-
-```python
-print("hey")
-```
-
 
 in developing [my language, kscript](https://github.com/chemicaldevelopment/kscript), i wanted to have the [Riemann Zeta Function](https://en.wikipedia.org/wiki/Riemann_zeta_function) and [Gamma Function](https://en.wikipedia.org/wiki/Gamma_function) available as part of the standard library. so, i implemented it!
 
@@ -21,22 +16,28 @@ our basic workflow is:
 
 let's get to it!
 
-<!--more-->
-
 ## Definitions
 
 i'll assume you're more or less familiar with what the Zeta and Gamma functions are, but i'll also provide a definition we can work with:
 
-$$ \Gamma(x) = (x - 1)! = \int_{0}^{\infty} t^{x-1} e^{-t} dt $$
+$$
+\Gamma(x) = (x - 1)! = \int_{0}^{\infty} t^{x-1} e^{-t} dt
+$$
 
-$$\zeta(x) = \sum_{n=1}^{\infty} \frac{1}{n^x} $$
+$$
+\zeta(x) = \sum_{n=1}^{\infty} \frac{1}{n^x}
+$$
 
 
 we use the following reflection formulas to define the value elsewhere: 
 
-$$\zeta(x) = 2 (2 \pi) ^ {x - 1} \sin(\frac{x \pi}{2}) \Gamma(1 - x) \zeta(1 - x)$$
+$$
+\zeta(x) = 2 (2 \pi) ^ {x - 1} \sin(\frac{x \pi}{2}) \Gamma(1 - x) \zeta(1 - x)
+$$
 
-$$\Gamma(x) = \sin(\pi x) \Gamma(1 - x)$$
+$$
+\Gamma(x) = \sin(\pi x) \Gamma(1 - x)
+$$
 
 
 ## Goal
@@ -141,11 +142,15 @@ these are all pretty self explanatory; especially with the comments. we use `@lr
 
 to create a table-based approximation (specifically, the [Lanczos Approximation](https://en.wikipedia.org/wiki/Lanczos_approximation)), we start with an observation that the Gamma function can be written as:
 
-$$\Gamma(x+1) \approx \sqrt{2 \pi} (x+g+\frac{1}{2})^{x+\frac{1}{2}} e^{-(x+g+\frac{1}{2})} A_g(x)$$
+$$
+\Gamma(x+1) \approx \sqrt{2 \pi} (x+g+\frac{1}{2})^{x+\frac{1}{2}} e^{-(x+g+\frac{1}{2})} A_g(x)
+$$
 
 where
 
-$$A_g(x) = \frac{1}{2}p_0(g) + p_1(g)\frac{x}{x+1} + p_2(g)\frac{x(x-1)}{(x+1)(x+2)} + ...$$
+$$
+A_g(x) = \frac{1}{2}p_0(g) + p_1(g)\frac{x}{x+1} + p_2(g)\frac{x(x-1)}{(x+1)(x+2)} + ...
+$$
 
 where $g$ is a specifically chosen number to maximize accuracy, $n$ is the number of terms, and the $p_i$ are coefficients computed for the best fit
 
@@ -157,28 +162,38 @@ this works fine on paper, but when actually implementing the C code there is a n
 
 Wouldn't it be nice to re-arrange the $A_g$ function into something that looks like the following:
 
-$$A_g'(x) = a_0 + \frac{a_1}{x+1} + \frac{a_2}{x+2} + ... \frac{a_{n-1}}{x+n-1}$$
+$
+A_g'(x) = a_0 + \frac{a_1}{x+1} + \frac{a_2}{x+2} + ... \frac{a_{n-1}}{x+n-1}
+$
 
 Therefore minimizing and simplifying the resulting code? Yes it would! But how do we do that?
 
 Well; we view the summation as a [Partial Fraction Summation](https://www.purplemath.com/modules/partfrac.htm); think of the following equation:
 
-$$ \frac{1}{x+1} + \frac{1}{x+2} = \frac{(x + 1) + (x + 2)}{(x+1)(x+2)} = \frac{2x+3}{(x+1)(x+2)}$$
+$
+ \frac{1}{x+1} + \frac{1}{x+2} = \frac{(x + 1) + (x + 2)}{(x+1)(x+2)} = \frac{2x+3}{(x+1)(x+2)}
+$
 
 We can algebraically manipulate the rational expression to yield either a summation of divisions, or a division of products & sums. This is actually very similar to our above expression that we want for $A_g'(x)$
 
 I'll skip all the murky details here, but essentially we'll end up solving a matrix equation that will tell us what our $a_i$ should be (similar to how, in the simple expression, if we are given $\frac{2x+3}{(x+1)(x+2)}$, our result $a_i$ should be $\[1, 1\]$). That matrix equation is defined via:
 
-$$ a = \mathbf{B} \mathbf{C} \mathbf{D_c} \mathbf{D_r} p $$
+$
+ a = \mathbf{B} \mathbf{C} \mathbf{D_c} \mathbf{D_r} p 
+$
 
 Where $a, p$ are vectors of the coefficients mentioned in the above formulas, and the rest are $n \times n$ matrices generated to describe the partial fraction decomposition. 
 
 
 Further, the error may be calculated as:
 
-$$ \textrm{err} = |\Gamma(x) - approx(x)| \leq |\frac{\pi}{2}(\frac{e^g}{\sqrt{2}} - (\frac{p_0}{2} + \sum_{j=1}^{n}(-1)^{j} p_j))| $$
+$
+ \textrm{err} = |\Gamma(x) - approx(x)| \leq |\frac{\pi}{2}(\frac{e^g}{\sqrt{2}} - (\frac{p_0}{2} + \sum_{j=1}^{n}(-1)^{j} p_j))| 
+$
 
-We would like to ensure that $$ \textrm{err} \leq 10^{-14} $$, which is among the limits of IEEE 64 bit floating point (i.e. a `double` in C)
+We would like to ensure that $
+ \textrm{err} \leq 10^{-14} 
+$, which is among the limits of IEEE 64 bit floating point (i.e. a `double` in C)
 
 
 Here's my code implementing the actual formulae:
@@ -374,7 +389,9 @@ For the sake of brevity; i won't post the implementation of `my_*lgamma`; it is 
 
 The hard part is over; the Zeta function is actually (in my opinion) easier to generate a table for. it is based on a (quite) simple formula:
 
-$$\zeta(x) = \frac{1}{d_0(1 - 2^{1-x})} \sum_{k=1}^{n}\frac{(-1)^{k-1}d_k}{k^x} + \gamma_n(x)$$
+$
+\zeta(x) = \frac{1}{d_0(1 - 2^{1-x})} \sum_{k=1}^{n}\frac{(-1)^{k-1}d_k}{k^x} + \gamma_n(x)
+$
 
 Where:
 
@@ -382,11 +399,15 @@ $n$ is the number of terms in the approximation, $d$ is a vector of coefficients
 
 The form of $d_k$ is much simpler to compute; it is given by: 
 
-$$d_k = n \sum_{j=k}^{n}\frac{(n+j-1)!4^j}{(n-j)!(2j)!}$$
+$
+d_k = n \sum_{j=k}^{n}\frac{(n+j-1)!4^j}{(n-j)!(2j)!}
+$
 
 The error term is bounded by:
 
-$$|\gamma_n(x)| \leq \frac{2}{(3+\sqrt{8})^n|\Gamma(x)||1-2^{1-x}|} \leq \frac{3(1+2|\Im(x)|e^{\frac{|\Im(x)|\pi}{2}})}{(3+\sqrt{8})^n|1-2^{1-x}|} $$
+$
+|\gamma_n(x)| \leq \frac{2}{(3+\sqrt{8})^n|\Gamma(x)||1-2^{1-x}|} \leq \frac{3(1+2|\Im(x)|e^{\frac{|\Im(x)|\pi}{2}})}{(3+\sqrt{8})^n|1-2^{1-x}|} 
+$
 
 And, therefore, again in this approximation, we would require that $ \gamma_n(x) \leq 10^{-14}$, to give us a sufficiently accurate approximation
 
@@ -612,7 +633,6 @@ The real code goes up to $2^{10}$, but you get the point; essentially, the small
 
 To test this, i wrote a small program using the generated code. You can check out the [full source code (mg.c)](https://gist.github.com/CadeBrown/52d316379ca6335ad8614991215dc335). I tested values of $x=\sigma+it$, for $\sigma, t \in \[0, 256\)$, and compared the time. I also compared the built in `tgamma` function discussed earlier, and measured how accurate my implementation was relative to it; here are the results summarized:
 
-{:.command-line .no-line-numbers data-prompt="{{ site.shellprompt }}" data-filter-output="out:"}
 ```bash
 gcc -std=c99 -Ofast -fno-math-errno t.c -lm -o test_gz
 ./test_gz

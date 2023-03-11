@@ -9,9 +9,8 @@ import {
   getAuthorData,
 } from "../consts";
 
-import Image from "../components/Image.astro";
-
 import FormatDate from "../components/FormatDate.astro";
+import Figure from "./Figure.astro";
 
 const {
   title = DEFAULT_TITLE,
@@ -23,11 +22,15 @@ const {
 } = Astro.props;
 
 const authorData = getAuthorData(author);
+//console.log("IMAGE", image)
+//const imageSrc = (await import("../.." + image)).default;
+//console.log("IMAGESRC", imageSrc)
+
 ---
 
 <div class="page-title">
   <center>
-    {image && <img class="page-image" src={image} alt="" />}
+    {image && <Figure class="page-image" src={image} alt="" />}
 
     <h1 class="title">{title}</h1>
 
@@ -58,6 +61,10 @@ const authorData = getAuthorData(author);
 
   .author {
     font-weight: bold;
+  }
+
+  .page-image {
+    height: 50vh;
   }
 
   .title {

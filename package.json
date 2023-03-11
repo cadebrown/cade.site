@@ -10,15 +10,20 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@astrojs/image": "^0.16.0",
+		"@astrojs/markdown-remark": "^2.1.0",
 		"@astrojs/mdx": "^0.17.2",
-		"@astrojs/prism": "^2.0.0",
 		"@astrojs/rss": "^2.1.1",
 		"@astrojs/sitemap": "^1.1.0",
-		"astro": "^2.0.15",
+		"astro": "^2.1.2",
+		"change-case": "^4.1.2",
+		"recast": "^0.22.0",
 		"rehype-katex": "^6.0.2",
 		"remark-definition-list": "^1.2.0",
 		"remark-math": "^5.1.1",
-		"remark-rehype": "^10.1.0"
+		"remark-rehype": "^10.1.0",
+		"sharp": "^0.31.3",
+		"shiki": "^0.14.1"
 	},
 	"devDependencies": {
 		"hast-util-to-string": "^2.0.0",

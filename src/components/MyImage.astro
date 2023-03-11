@@ -1,0 +1,45 @@
+---
+//https://docs.astro.build/en/guides/assets/
+//import { Image } from "astro:assets";
+
+import { Image } from "@astrojs/image/components";
+// TODO: resolve with markdown
+
+// https://vkbansal.me/blog/resolving-images-astro-md/
+const { src, alt, caption, classes } = Astro.props;
+//const { width, height } = Astro.props;
+
+//import myimg from "../assets/knuth-boxes.webp";
+//console.log("src", src);
+
+// dynamically import image
+let myimg = undefined;
+try {
+  myimg = (await import(".." + src /* @vite-ignore */)).default;
+} catch (e) {
+  console.log("ERROR:", e);
+}
+---
+
+{
+  (myimg && <Image src={myimg} alt={alt} />) || (
+    <img src={src} alt={alt} />
+  )
+}
+<style>
+  figcaption {
+    margin: 0 0.25em;
+  }
+
+  img {
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  /* named styles, see global.css for 'classes' */
+  @media only screen and (min-width: 768px) {
+    figure {
+      margin: 1em;
+    }
+  }
+</style>

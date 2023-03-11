@@ -51,3 +51,5 @@ All commands are run from the root of the project, from a terminal:
 
   * [Astro Documentation](https://docs.astro.build)
   * [Astro + KaTeX: rendering math](https://ileumas.com/writing/2022/03/astro-math-katex/)
+  * [accessible-astro-components](https://www.npmjs.com/package/accessible-astro-components)
+  * [jampack](https://jampack.divriots.com/installation/): for optimization post processing

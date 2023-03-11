@@ -8,13 +8,20 @@ import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
+import image from "@astrojs/image";
 
-// https://astro.build/config
+import { imagesPlugin } from './plugins/images-plugin';
+
+const katexConfig: katex.KatexOptions = {
+  //displayMode: true,
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://cade.site',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), image({
+    serviceEntryPoint: '@astrojs/image/sharp'
+  })],
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
@@ -28,24 +35,34 @@ export default defineConfig({
       // Enable word wrap to prevent horizontal scrolling
       wrap: true
     },
-    remarkPlugins: [remarkMath,
+    remarkPlugins: [
       remarkDefinitionList,
+      remarkMath,
+      //remarkRehype,
+      /*
       [remarkRehype, {
         handlers: {
-          ...defListHastHandlers,
+          ...defListHastHandlers
         }
       }],
+      */
     ],
 
-    rehypePlugins: [rehypeSlug,
-      // This adds links to headings
+    rehypePlugins: [
+      rehypeSlug,
+      // add links to headings
       [rehypeAutolinkHeadings, autolinkConfig],
       // Tweak GFM task list syntax
       //rehypeTasklistEnhancer(),
       // Translates the autolink headings anchors
       //rehypei18nAutolinkHeadings(),
-      [rehypeKatex, {
-        displayMode: true
-      }]]
-  }
+      [rehypeKatex, katexConfig]
+    ],
+
+  },
+  vite: {
+    plugins: [
+      imagesPlugin(),
+    ],
+  },
 });
