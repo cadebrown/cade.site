@@ -1,0 +1,196 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+import MyImage from "../components/MyImage.astro";
+
+import FormatDate from "../components/FormatDate.astro";
+import FormatAuthor from "../components/FormatAuthor.astro";
+import FormatKeywords from "../components/FormatKeywords.astro";
+
+import { getFrontmatter } from "../consts";
+
+import { getCollection } from "astro:content";
+
+// get all blog posts from the 'blog' collection, sorted by date
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<PageLayout frontmatter={getFrontmatter({ title: "All Blog Posts" })}>
+    <hr />
+
+    {
+      posts.map((post) => {
+        // get post front matter
+        const frontmatter = post.data;
+        // destructure
+        const { title, description, author, date, image, keywords } = frontmatter;
+
+        // TODO: create an article preview component?
+        return (
+          <>
+            <article>
+              <div class="card-post-image">
+                <a href={`/${post.slug}`}>
+                  <MyImage src={image} alt={title} />
+                </a>
+              </div>
+
+              <div class="card-post-text">
+                <a class="card-post-title" href={`/${post.slug}`}>
+                  {title}
+                </a>
+                <p class="card-post-description">
+                  <a href={`/${post.slug}`}>{description}</a>
+                </p>
+                <p class="card-post-author">
+                  by:{" "}
+                  <b>
+                    <FormatAuthor author={author} />
+                  </b>
+                </p>
+                <p class="card-post-date">
+                  date:{" "}
+                  <b>
+                    <FormatDate date={date} />
+                  </b>
+                </p>
+                <p class="card-post-keywords">
+                  keywords:{" "}
+                  <b>
+                    <FormatKeywords keywords={keywords} />
+                  </b>
+                </p>
+              </div>
+            </article>
+            <hr />
+          </>
+        );
+      })
+    }
+</PageLayout>
+
+<style is:global>
+
+.card-post-image {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-post-image > a {
+    /*height: 100%;*/
+  }
+
+  .card-post-image > a > img {
+    /*height: 100%;*/
+
+    /* if 'cover', less wasted space but crops out... */
+    object-fit: cover;
+    border-radius: 0.5em;
+  }
+
+</style>
+<style>
+  article {
+    display: flex;
+    flex-direction: row;
+
+    height: 256px;
+
+    padding: 0.5em 0;
+  }
+
+  hr {
+    margin: 0.4em 0;
+  }
+
+  .card-post-text {
+    flex: 2;
+    /*flex: 1 1 600px;*/
+    /*min-width: 600px;*/
+    padding: 1em;
+    font-size: 102%;
+  }
+
+  .card-post-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--main-text);
+  }
+
+  .card-post-description > a {
+    color: var(--main-text);
+    font-weight: normal;
+  }
+
+  .card-post-author,
+  .card-post-date,
+  .card-post-keywords {
+    text-align: left;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    article {
+      flex-direction: column;
+      /*max-height: none;*/
+      height: unset;
+    }
+    .card-post-image > a > img {
+      max-height: 25vh;
+    }
+
+    .card-post-text {
+      padding: 0.75em 0;
+      text-align: center;
+      padding-bottom: 0;
+
+      /*margin: 1em 0;*/
+      /*font-size: inherit;*/
+    }
+
+    .card-post-author,
+    .card-post-date,
+    .card-post-keywords {
+      font-size: 90%;
+    }
+  }
+
+  /*
+
+  dl {
+    list-style-type: none;
+    padding: unset;
+  }
+  dl dt {
+    padding: 0.25em;
+  }
+
+  */
+
+  ul {
+    list-style-type: none;
+    padding: unset;
+  }
+  ul li {
+    display: flex;
+    padding: 0.25em 0;
+  }
+  ul li :global(time) {
+    /* have column that  */
+    min-width: 135px;
+    /*flex: 0 0 120px;*/
+    /*color: #c4c4c4;*/
+  }
+  ul li a:visited {
+    /*color: #8e32dc;*/
+  }
+  .blog-all-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+</style>

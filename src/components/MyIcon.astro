@@ -1,0 +1,13 @@
+---
+// MyIcon.astro - a wrapper for the Astro Icon component that also adds support for linking
+
+import { Icon } from "astro-icon";
+import MaybeLink from "./MaybeLink.astro";
+
+const { name, alt = "", style, class: className, href } = Astro.props;
+---
+
+<MaybeLink href={href}>
+  <Icon name={name} alt={alt} style={style} class={className} />
+  <slot />
+</MaybeLink>

@@ -1,0 +1,75 @@
+---
+// DefaultHead.astro - default HTML <head> element, with metadata, etc
+
+import { DEFAULT_DATE, DEFAULT_FRONTMATTER, DEFAULT_TITLE } from "../consts";
+
+const { frontmatter } = Astro.props;
+const { title, description, author, date, keywords, image } = frontmatter || DEFAULT_FRONTMATTER;
+
+const titletext = title == DEFAULT_TITLE ? title : title + " | " + DEFAULT_TITLE;
+
+// get canonical URL (no trailing slash)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// use 'import' with CSS so it is inlined
+import "../styles/global.css";
+
+// or, you can do it the old way by importing CSS in HTML (copy this to somehwere lower in the file):
+/*
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+*/
+
+//import "../styles/global.css";
+//import '../styles/katex.min.css';
+//import '../styles/Roboto.css';
+---
+
+<head>
+  <!-- Global Metadata -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Icon/Logo -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Primary Meta Tags -->
+  <title>{titletext}</title>
+  <meta name="title" content={titletext} />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={author} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={titletext} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.url)} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+  <!-- KaTeX: math formatting -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+    crossorigin="anonymous"
+  />
+  
+</head>

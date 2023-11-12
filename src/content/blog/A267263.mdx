@@ -1,0 +1,18 @@
+---
+title: "My Integer Sequence (A267263)"
+description: "Number of nonzero digits in representation of n in primorial base."
+author: "Cade Brown"
+date: "2016-03-01:00:00:00"
+keywords: "math"
+image: "/images/A267263-chart.webp"
+---
+
+While working on a hobby project of mine that searched for [prime generating polynomials](https://en.wikipedia.org/wiki/Formula_for_primes#Prime_formulas_and_polynomial_functions), I was testing out different data structures for efficient primality testing. One such data-structure was a hash set based on [Wheel Factorization](https://en.wikipedia.org/wiki/Wheel_factorization) of polynomial coefficients.
+
+Ultimately I decided to go with a simpler approach of binary searching a [prime sieve](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes). But, in implementing and evaluating complexity of the wheel factorization scheme, I ran across an interesting function: the number of nonzero digits in the representation of a number in the [primorial base](https://oeis.org/wiki/Primorial_numeral_system). This measurement is useful for determining the complexity of a number, going through levels of wheel factorization.
+
+Being the curious person I am, I decided to look up this function in the [OEIS](https://oeis.org/), and found that it was not there. So, I decided to add it myself: [oeis.org/A267263](https://oeis.org/A267263). That page contains some sample code, and connections to other integer sequences already on OEIS.
+
+It's not much, but when it was first approved I felt extremely proud that I had contributed to the OEIS. I hope to add more sequences in the future.
+
+

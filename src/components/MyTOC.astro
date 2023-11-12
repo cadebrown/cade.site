@@ -1,0 +1,238 @@
+---
+// MyTOC.astro - custom '<aside>' element generated via table-of-contents headings
+import { Icon } from "astro-icon";
+
+// get helper element for actual navigation tree
+import MyTOCTree from "./MyTOCTree.astro";
+
+const { headings } = Astro.props;
+
+// wheter we should actually generate a TOC (only if we have a few headings)
+const has_enough = headings && headings.length > 3;
+
+/*
+    <aside class="hidden">
+    <aside>
+
+*/
+---
+
+{
+  has_enough && (
+  <aside class="hidden">
+      <button class="side-toggle">
+        <span>Contents</span>
+        <div class="side-toggle-show">
+          <Icon name="cade-ux/eye" />
+        </div>
+        <div class="side-toggle-hide">
+          <Icon name="cade-ux/eye-closed" />
+        </div>
+      </button>
+      <hr />
+      <nav>
+        <MyTOCTree headings={headings} />
+      </nav>
+    </aside>
+  )
+}
+
+<style>
+  aside {
+    width: 90%;
+    margin: 0 auto;
+    /* on top of the content */
+    z-index: 1;
+  }
+
+  aside > hr {
+    /*margin: 0 0.5rem;*/
+    margin: 0;
+
+    /*border: none;*/
+    border: var(--side-border);
+  }
+
+  aside > nav {
+    padding: 1rem;
+    font-size: 92%;
+    /*border: var(--side-border);*/
+  }
+
+  aside > button {
+    height: var(--side-height);
+    width: 100%;
+
+    border: none;
+    background: none;
+    /*
+
+
+    font-size: 140%;
+    */
+  }
+  aside > button > span {
+    font-size: 180%;
+  }
+
+  aside > button > div {
+    display: none;
+  }
+
+  aside .side-toggle-show {
+    color: var(--side-icon-show);
+    fill: var(--side-icon-show);
+  }
+
+  aside .side-toggle-hide {
+    color: var(--side-icon-hide);
+    fill: var(--side-icon-hide);
+  }
+
+  @media screen and (min-width: 1000px) {
+    aside {
+      width: var(--side-width);
+      min-width: var(--side-width);
+      max-width: var(--side-width);
+
+      position: -webkit-sticky;
+      position: sticky;
+      top: 1rem;
+
+      background: var(--side-back);
+      border: var(--side-border);
+      border-radius: 8px;
+    }
+
+    aside > hr {
+    }
+
+    aside > nav {
+      padding: 1rem;
+
+      /*
+      max-height: auto;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      */
+    }
+
+    aside > button {
+      /*padding: 0 1rem;*/
+      padding-left: 1rem;
+
+      display: flex;
+      flex-direction: row;
+
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    aside > button > div {
+      /* render subspan as conditional label */
+      height: 2.5rem;
+
+      display: flex;
+      flex-direction: row;
+
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: 18px;
+      text-decoration: bold;
+    }
+
+    aside > button > div > span {
+      /* remove space between child label */
+      /*margin-right: -0.5rem;*/
+    }
+
+    /* Styles for hide/show */
+
+    aside.hidden {
+      width: 0;
+      min-width: 0;
+      max-width: 0;
+      border: none;
+    }
+
+    aside.hidden > button {
+      width: max-content;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      /* for showing the label text */
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+
+      background: var(--side-back);
+      border: var(--side-border);
+      border-radius: 16px;
+    
+      /* for not showing */
+      /*
+
+      padding-left: 0;
+      padding-right: 0;
+      */
+    }
+
+    aside.hidden > button > span {
+      /* whether to enable the label text when hidden */
+      /*display: none;*/
+
+    }
+
+    aside.hidden > hr {
+      display: none;
+    }
+
+    aside.hidden > nav {
+      display: none;
+    }
+
+    aside:not(.hidden) .side-toggle-show {
+      display: none;
+    }
+
+    aside.hidden .side-toggle-hide {
+      display: none;
+    }
+  }
+</style>
+<script>
+  // https://www.w3schools.com/howto/howto_js_collapsible.asp
+
+  // helper function to set visibility of a side element
+  const toggle_visibility = (side: HTMLElement, nav: HTMLElement) => {
+    console.log("toggle_visibility", side, nav);
+
+    if (side.classList.contains("hidden")) {
+      side.classList.remove("hidden");
+      //nav.style.maxHeight = nav.scrollHeight + "px";
+    } else {
+      side.classList.add("hidden");
+      //nav.style.maxHeight = "0px";
+    }
+  };
+
+  // add click handles to the toggle buttons
+  for (let elem of document.querySelectorAll("button.side-toggle")) {
+    // get the 'aside' element (direct parent of the button)
+    let side = elem.parentElement!;
+
+    // get the 'nav' element (direct child of the 'aside')
+    let nav = side.querySelector("nav")!;
+
+    // initially, set the maxHeight
+    //nav.style.maxHeight = nav.scrollHeight + "px";
+
+    // add listener to button
+    elem.addEventListener("click", function (event) {
+      // toggle visibility
+      toggle_visibility(side, nav);
+    });
+  }
+</script>

@@ -1,0 +1,17 @@
+---
+// MyYoutube.astro - embedded youtube video, give the YT embed URL as 'src' prop
+
+const { src, title, width = 600, height = 600 } = Astro.props;
+---
+
+<center>
+  <iframe
+    src={src}
+    title={title}
+    width={width}
+    height={height}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</center>
+
+<style></style>

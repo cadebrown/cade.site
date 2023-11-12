@@ -1,0 +1,26 @@
+---
+// FormatKeywords.astro - formats keywords and links them
+import FormatKeyword from "./FormatKeyword.astro";
+
+// get the keywords and format seperators
+const { keywords, lhs = "[", rhs = "]", sep = ", " } = Astro.props;
+
+// turn into array, depending if already an array or a space/comma seperated string
+const words = Array.isArray(keywords) ? keywords : keywords.split(/[, ]+/);
+---
+
+<>
+  {lhs}
+  {
+    words.map((word: string, index: number) => {
+      // add a comma after each word, except the last one
+      return (
+        <>
+          {index > 0 && sep}
+          <FormatKeyword keyword={word} />
+        </>
+      );
+    })
+  }
+  {rhs}
+</>

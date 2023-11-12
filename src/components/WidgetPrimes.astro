@@ -1,0 +1,68 @@
+---
+// WidgetPrimes.astro - calculates and displays prime numbers, for fun
+---
+
+<span class="WidgetPrimes-list"></span>
+
+<style is:global>
+  .WidgetPrimes-list span:after {
+    /* seperate by commas */
+    /*content: ", ";*/
+
+  }
+</style>
+<script>
+  // check if 'n' is prime, naively
+  const is_prime_naive = (n: number) => {
+    if (n < 2) return false;
+    if (n === 2) return true;
+    if (n % 2 === 0) return false;
+
+    for (let x = 3; x * x <= n; x += 2) {
+      if (n % x === 0) return false;
+    }
+    return true;
+  };
+
+  // helper function to actually do the work
+  const doWidgetPrimes = (list: HTMLElement) => {
+    console.log("doWidgetPrimes()");
+
+    // primes calculated so far
+    let primes = [];
+
+    // current iterator
+    let it = 0;
+
+    // helper function to emit primes
+    const emit = (...found: number[]) => {
+      for (let n of found) {
+        const el = document.createElement("span");
+        el.textContent = n.toString();
+        list.appendChild(el);
+
+        // add seperator
+        const el_sep = document.createElement("span");
+        el_sep.textContent = ", ";
+        list.appendChild(el_sep);
+
+        primes.push(n);
+      }
+    };
+
+    // search for more every so often
+    setInterval(() => {
+      // check 'it'
+      if (is_prime_naive(it)) emit(it);
+
+      // advance to next
+      it++;
+    }, 1);
+  };
+
+  // apply to all 'WidgetPrimes-list' elements
+  for (let elem of document.querySelectorAll(".WidgetPrimes-list")) {
+    // do the work
+    doWidgetPrimes(elem);
+  }
+</script>

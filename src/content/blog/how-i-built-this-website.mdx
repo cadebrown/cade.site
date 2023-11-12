@@ -1,0 +1,87 @@
+---
+title: "How I Built This Website With Astro (cade.site)"
+description: "A guide on how I built this website with Astro."
+author: "Cade Brown"
+date: "2023-02-27:00:00:00"
+keywords: "webdev, astro, html"
+image: "/images/site/icon.webp"
+---
+
+# Motivation / Background
+
+Recently, I decided to recreate my website ([cade.site](https://cade.site)) from scratch. I had been using [Jekyll](https://jekyllrb.com/) for a while, but got annoyed with some of the quirks and lack of extensibility. I also wanted to use fancier component-based UI development (since I've been writing a lot of React lately). Upon researching on the web, I found [Astro](https://astro.build/), that supports static site generation. I really liked that it supported basically every feature I needed:
+
+  * [Markdown](https://www.markdownguide.org/cheat-sheet/) for content, embeddable in HTML
+    * They also support [MDX](https://docs.astro.build/en/guides/markdown-content/) for advanced markdown
+  * [React](https://reactjs.org/) for UI components
+  * [Sass/SCSS](https://sass-lang.com/) for styling (although, CSS is all I really need)
+  * [TypeScript](https://www.typescriptlang.org/) for type checking (seriously, `TypeScript > JavaScript`)
+  * Able to be hosted with [GitHub pages](https://pages.github.com/) (or any other static site host)
+    * Additionally, GitHub actions are supported
+  * Supports [image optimization](https://docs.astro.build/en/guides/integrations-guide/image/) and other [plugins/integrations](https://docs.astro.build/en/guides/integrations-guide/)
+
+Also, the DX has been amazing so far, so part of writing this post is to give a shoutout to the Astro team for making such a great tool. I highly recommend it to anyone who wants to build a static website. I haven't used it for dynamic websites, but it does support [Server Side Rendering (SSR)](https://docs.astro.build/en/guides/server-side-rendering/) that looks really slick.
+
+So, let's get into it!
+
+The code for this website is all located at [github.com/cadebrown/cade.site](https://github.com/cadebrown/cade.site).
+
+# Getting Started
+
+I got started with a a minimal Astro project, and locally inspected a few templates I found online:
+
+  * [Astro official themes](https://astro.build/themes/)
+  * [bearblog](https://github.com/HermanMartinus/bearblog/): minimalist blog template
+
+I ended up coming up with my own structure from scratch, but these gave me a good starting point. I'd recommend just cloning one of these and modifying it to your liking (or you can take mine!).
+
+
+## Design Philosophy
+
+I am extremely opinionated on how software should look and behave. I'm writing for a specific audience, so I make a few decisions that probably don't apply if you're going for mass appeal. For example:
+
+  * I like plain HTML wherever possible, minimal JavaScript
+  * I like `monospace` fonts for everything (code, text, etc.)
+  * I like dark mode (I will support multiple themes, though)
+  * I like minimalism, in form and function
+
+Basically, I just want a [motherfucking website](https://motherfuckingwebsite.com/).
+
+
+## Project Structure
+
+Overall, the structure of an Astro project is fairly simple:
+
+  * `astro.config.mjs`: configuration file for Astro
+  * `public/`: static assets (images, audio, etc.) for the website
+  * `src/`: source files (Astro, JS, CSS, etc.)
+    * `src/pages/`: the pages that will be the routes of the website
+    * `src/content/`: contains just the content, in markdown
+    * `src/layouts/`: contains all the reusable layouts
+    * `src/components/`: contains all the reusable components
+
+What I like about Astro as opposed to Jekyll is that it's not so opinionated about being structured around a single "posts" collection. For example, Jekyll requires that all your content be in the `_posts/` directory, and that you use a specific naming scheme for your posts. 
+
+With Astro, if we have `content/blog/*.md` that we want to map to `site.com/blog/*`, but also `content/projects/*.md` that we want to map to `site.com/projects/*`, then Astro makes it easy to define different routes.
+
+## Developer Experience (DX)
+
+As far as DX, Astro is amazing. The basic workflow to setup the project on a new computer is:
+
+  * Ensure you have requirements installed ([NodeJS](https://nodejs.org/), [npm](https://www.npmjs.com/))
+  * Download the repository
+    * `git clone https://github.com/cadebrown/cade.site.git`
+  * Install project dependencies
+    * `npm install`
+  * Run the development web server
+    * `npm run dev`
+
+I've only used Ubuntu so far, but Astro should be cross-platform. So far, my experience with VSCode has also been flawless, the suggested extensions make development fast with auto-completion, type-checking, and more.
+
+## GitHub Actions for Deployment
+
+TODO: write this section
+
+# Design Decisions
+
+Now, if you're still reading, let's get into the nitty-gritty of how I built this website, UI-wise.

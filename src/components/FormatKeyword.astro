@@ -1,0 +1,9 @@
+---
+// FormatKeyword.astro - formats a single keyword and links to it
+const { keyword } = Astro.props;
+
+// trim, lowercase, and replace spaces with dashes
+const word = keyword.trim().toLowerCase().replace(/\s+/g, '-');
+---
+
+<><b>#{word}</b></>

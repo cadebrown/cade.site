@@ -1,0 +1,27 @@
+---
+// DefaultLayout.astro - the default overall HTML layout for the site, defining just the 'html', 'head', and 'body' elements.
+
+import GlobalCodeCopy from "../components/GlobalCodeCopy.astro";
+
+import DefaultHead from "../components/DefaultHead.astro";
+import DefaultHeader from "../components/DefaultHeader.astro";
+import DefaultFooter from "../components/DefaultFooter.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<html lang="en">
+  <DefaultHead frontmatter={frontmatter} />
+
+  <body data-theme="chalkboard">
+    <GlobalCodeCopy />
+    <DefaultHeader />
+    <main>
+      <slot />
+    </main>
+    <DefaultFooter />
+  </body>
+</html>
+
+<style>
+</style>

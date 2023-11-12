@@ -1,0 +1,50 @@
+---
+// src/components/MyGallery.astro - display multiple images in a concise layout
+
+import MyFigure from "../components/MyFigure.astro";
+
+const { filenames } = Astro.props;
+---
+
+<div class="mygallery">
+  {
+    filenames.map((filename: string) => (
+      <div class="mygallery-item">
+        <MyFigure src={filename} />
+      </div>
+    ))
+  }
+</div>
+<style>
+  .mygallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .mygallery-item {
+    min-width: 150px;
+    max-width: 800px;
+    flex: 1 1 20vw;
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .mygallery-item:hover {
+    /* when hovering, make the current item a bit bigger */
+    transform: scale(1.04);
+  }
+
+  figure {
+    margin: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+</style>

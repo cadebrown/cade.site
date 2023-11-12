@@ -1,0 +1,12 @@
+---
+import PageLayout from "./PageLayout.astro";
+
+import { SITE_FRONTMATTER } from "../consts";
+
+// override with the site's frontmatter
+const frontmatter = SITE_FRONTMATTER;
+---
+
+<PageLayout frontmatter={frontmatter}>
+  <slot />
+</PageLayout>

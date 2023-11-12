@@ -1,0 +1,22 @@
+---
+// since cade.site is mainly blog, I define this in `src/pages` instead of `src/pages/blog` so that blog posts have a URL of `cade.site/[postslug]` instead of the longer `cade.site/blog/[postslug]`
+// you might want to change this if you aren't just a blog, or want `/blog/` before the URL of every blog post
+import { CollectionEntry, getCollection } from "astro:content";
+import PostLayout from "../layouts/PostLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { postslug: post.slug },
+    props: { post: post },
+  }));
+}
+type Props = CollectionEntry<"blog">;
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+---
+
+<PostLayout frontmatter={post.data} headings={headings}>
+  <Content />
+</PostLayout>

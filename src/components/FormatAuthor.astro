@@ -1,0 +1,20 @@
+---
+// FormatAuthor.astro - formats an author name, and links to them
+import { DEFAULT_AUTHOR, getAuthor } from "../consts";
+
+const { author = DEFAULT_AUTHOR } = Astro.props;
+
+const authorData = getAuthor(author);
+
+/*
+
+*/
+
+---
+
+<>
+  {authorData.name}
+  <a href={"mailto:" + authorData.email}>
+    &lt;{authorData.email}&gt;
+  </a>
+</>

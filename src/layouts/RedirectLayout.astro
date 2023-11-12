@@ -1,0 +1,11 @@
+---
+// RedirectLayout.astro - creates a HTTP redirect to the given location (the 'href' prop)
+
+const { href } = Astro.props.frontmatter || Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta http-equiv="refresh" content={"0;URL='" + href + "'"} />
+  </head>
+</html>

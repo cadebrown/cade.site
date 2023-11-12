@@ -1,0 +1,12 @@
+---
+// MaybeLink.astro - if 'href' is provided, render as a link, otherwise just render children
+const { href } = Astro.props;
+---
+
+{
+  (href && (
+    <a href={href}>
+      <slot />
+    </a>
+  )) || <slot />
+}

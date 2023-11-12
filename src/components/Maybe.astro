@@ -1,0 +1,6 @@
+---
+// Maybe.astro - maybe-like function, which either emits its children or nothing
+const { cond } = Astro.props;
+---
+
+{(cond && <slot />) || <></>}

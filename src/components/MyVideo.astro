@@ -1,0 +1,14 @@
+---
+// MyVideo.astro - displays video content
+
+const { src, type, caption } = Astro.props;
+---
+
+<figure>
+  <video controls loop>
+    <source src={src} type={type} />
+  </video>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style></style>

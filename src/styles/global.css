@@ -1,0 +1,409 @@
+/* global.css - Near Computronium (cade.site) CSS stylesheet, designed as a minimalist and highly semantic styling, with theme support */
+
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+
+/* defines non-theme and theme variables, for the default them (which is 'chalkboard'). see later in the file for other themes */
+:root {
+
+	/*** LAYOUT VARIABLES ***/
+
+	/** Layout/Design Variables (theme-independent) **/
+
+	/* the width of the side TOC */
+	--side-width: clamp(280px, 25vw, 450px);
+	/* the height of the title of the side TOC */
+	--side-height: 3.5rem;
+	/* the border style of the side TOC */
+	--side-border: 1px solid var(--border);
+
+	/** Social Branding **/
+
+	/* color for 'email' social icon */
+	--social-email: #e25040;
+	/* color for 'github' social icon */
+	--social-github: #2C8C03;
+	/* color for 'twitter' social icon */
+	--social-twitter: #008C9B;
+	/* color for 'instagram' social icon */
+	--social-instagram: #7160EA;
+
+
+	/*** THEME VARIABLES (default: chalkboard) ***/
+
+	/* border color */
+	--border: #666;
+
+	/* body background color */
+	--body-back: #111;
+	
+	/* side TOC background color */
+	--side-back: #181818;
+	/* side TOC text color */
+	--side-text: #eee;
+	/* side TOC icon 'show' color */
+	--side-icon-show: green;
+	/* side TOC icon 'hide' color */
+	--side-icon-hide: red;
+
+	/* navigator background color */
+	--nav-back: #666;
+	/* navigator text color */
+	--nav-text: #eee;
+
+	/* footer background color */
+	--footer-back: #080808;
+	/* footer text color */
+	--footer-text: #eee;
+	
+	/* main content background color */
+	--main-back: #2a2a2a;
+	/* main content text color */
+	--main-text: #eee;
+	/* main content link color */
+	--main-link: #5ca7fd;
+
+	/* alternative content background color */
+	--alt-back: #1a1a1a;
+	/* alternative content text color */
+	--alt-text: #fff;
+	/* alternative content link color */
+	--alt-link: #5ca7fd;
+
+
+	/**TODO: replace these**/
+
+	/*
+	--color-background: #2a2a2a;
+	--color-text: #eee;
+
+	--color-alt-background: #111111;
+	--color-alt-text: #fff;
+
+	--color-link: #2baaf3;
+
+	--color-border: #888;
+
+	*/
+
+	/*--color-link: #5ca7fd;*/
+
+
+}
+
+/* theme 'chalkboard': a beautiful dark theme that smells like hagoromo! (this is the default theme) */
+html[data-theme='chalkboard'] {
+	/* nothing needed, default theme defined in ':root' above */
+}
+
+/* theme 'whiteboard': a light theme inspired by expo markers and failed technical interviewws */
+html[data-theme='whiteboard'] {
+	--color-background: #f6f6f6;
+	--color-text: #111;
+
+	--color-alt-background: #ddd;
+	--color-alt-text: #000;
+
+	--color-link: #0946f0;
+
+	--color-border: #444;
+
+	--color-header: #080808;
+	--color-header-link: #eee;
+
+}
+
+html[data-theme='nerdy'] {
+	--color-background: #000;
+	--color-alt-background: #111;
+	--color-text: #0f0;
+	--color-alt-text: #0f0;
+	--color-border: #777;
+}
+
+
+
+/*** HTML Global/Meta Elements ***/
+
+body {
+	max-width: 1800px;
+
+
+	margin: 0 auto;
+	padding: 0;
+
+	/*
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	*/
+
+	text-align: left;
+
+	line-height: 1.35;
+	font-size: 18px;
+
+	background: var(--body-back);
+
+	/* I love monospace, so I set everything to that */
+	font-family: Consolas, monospace;
+
+	/* if you want a more "safe" default, uncomment one of these lines: */
+	/*font-family: "Roboto", sans-serif;*/
+	/*font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;*/
+}
+
+main {
+	margin: 0 auto;
+
+	color: var(--main-text);
+	background: var(--main-back);
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+section {
+	width: 100%;
+}
+
+/*** HTML Content/Audio/Video Elements ***/
+
+pre {
+	padding: 1rem;
+}
+
+pre>code {
+	all: unset;
+}
+
+code {
+	display: inline-block;
+
+	padding: 2px 4px;
+	/* because of 'ul { overflow: auto; }', we need a margin .... sucks ... TODO??? */
+	margin: 1px;
+	outline: 1px solid var(--border);
+	border-radius: 2px;
+
+	/*background-color: #f2f2f2;*/
+	background-color: var(--alt-back);
+	color: var(--alt-text);
+}
+
+blockquote {
+	/* for float images */
+	overflow: auto;
+	/*overflow: hidden;*/
+
+	background: var(--alt-back);
+	color: var(--alt-text);
+	border-left: 10px solid var(--border);
+	font-size: 1.1em;
+	margin: 1em 0;
+	padding: 1.5em 10px 0.25em 10px;
+	/*quotes: "\201C""\201D""\2018""\2019";*/
+
+}
+
+blockquote:before {
+	content: open-quote;
+	font-size: 3.6em;
+	line-height: 0.1em;
+	margin-right: 0.25em;
+	vertical-align: -0.4em;
+}
+
+svg {
+	height: 100%;
+	/*
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	object-fit: contain;
+	box-sizing: border-box;*/
+}
+
+img {
+	display: block;
+	object-fit: contain;
+	box-sizing: border-box;
+
+	height: 100%;
+	width: 100%;
+
+	max-width: 100%;
+	max-height: 80vh;
+	/*max-height: 80vh;*/
+
+	/* include padding in size calculation */
+	/*padding: 0.5em;*/
+
+}
+
+figure {
+	max-width: 100%;
+	/*margin: 0;*/
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figcaption {
+	text-align: center;
+}
+
+video {
+	max-width: 100%;
+	max-height: 50vh;
+	margin: 1em auto;
+	display: block;
+	border-radius: 0.25em;
+}
+
+
+/*** HTML Form/Input Elements ***/
+
+button {
+	background-color: var(--alt-back);
+	color: var(--alt-text);
+	font-family: inherit;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+/*** HTML List Elements ***/
+
+
+ul {
+	/* fixes hidden content under float elements */
+	/*overflow: auto;*/
+	list-style-position: inside;
+	padding-left: 1em;
+	margin-left: 0;
+
+}
+
+ol {
+	/* fixes hidden content under float elements */
+	/*overflow: auto;*/
+
+}
+
+/*** HTML Table Elements ***/
+
+
+
+/*** HTML Misc/Extra Elements ***/
+
+hr {
+	border-color: var(--alt-text);
+}
+
+/*** HTML Text/Formatting Elements ***/
+
+a {
+	color: var(--main-link);
+	/*font-weight: bold;*/
+	text-decoration: none;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 1.68rem;
+}
+
+h2 {
+	font-size: 1.6rem;
+}
+
+h3 {
+	font-size: 1.45rem;
+}
+
+h4 {
+	font-size: 1.33rem;
+}
+
+h5 {
+	font-size: 1.22rem;
+}
+
+h6 {
+	font-size: 1.14rem;
+}
+
+article h1::before {
+	content: "# ";
+}
+
+article h2::before {
+	content: "## ";
+}
+
+article h3::before {
+	content: "### ";
+}
+
+article h4::before {
+	content: "#### ";
+}
+
+article h5::before {
+	content: "##### ";
+}
+
+article h6::before {
+	content: "###### ";
+}
+
+
+/*** Reusable Classes ***/
+
+@media only screen and (max-width: 768px) {
+	.no-mobile {
+		display: none;
+	}
+}
+.autolink-svg {
+	/* change x y offset */
+	/*transform: translate(0.25em, 0.11em);*/
+	/* change color */
+	fill: var(--main-link);
+	/*transform: translate(0.3em, 0.1em);*/
+
+	vertical-align: middle;
+	margin-bottom: 0.24em;
+}
+
+.autolink-header {
+	visibility: hidden;
+
+	display: inline-block;
+	margin-left: 0.3em;
+}
+
+h1:hover .autolink-header,
+h2:hover .autolink-header,
+h3:hover .autolink-header,
+h4:hover .autolink-header,
+h5:hover .autolink-header,
+h6:hover .autolink-header {
+	visibility: visible;
+	/*opacity: 1;*/
+}
+
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}

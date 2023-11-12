@@ -1,0 +1,78 @@
+---
+import DefaultLayout from "./DefaultLayout.astro";
+
+import MyTOC from "../components/MyTOC.astro";
+
+const { frontmatter, headings } = Astro.props;
+
+const { title, description, author, date, keywords, image } = frontmatter;
+---
+
+<DefaultLayout frontmatter={frontmatter}>
+  <header>
+    <center>
+      <span class="page-title">{title}</span>
+      <hr />
+      <span class="page-description"><i>{description}</i></span>
+    </center>
+  </header>
+
+  <article>
+    <MyTOC headings={headings} />
+    <section>
+      <slot />
+    </section>
+  </article>
+</DefaultLayout>
+
+<style>
+  header {
+    padding: 1rem 0;
+  }
+
+  article {
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .page-title {
+    display: block;
+    width: 95%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .page-description {
+    display: block;
+    width: 85%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    font-size: 1.0rem;
+  }
+
+  @media (min-width: 1000px) {
+    article {
+      /* on large screens, stack side by side */
+      flex-direction: row-reverse;
+      gap: 0.5rem;
+    }
+
+    .page-title {
+      font-size: 3.0rem;
+    }
+
+    .page-description {
+      font-size: 1.25rem;
+    }
+  }
+</style>

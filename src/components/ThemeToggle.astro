@@ -1,0 +1,93 @@
+---
+// ThemeToggle.astro - a theme toggle component that uses localStorage to persist the theme
+
+// left/right side brackets for the themes
+const [lhs, rhs] = ["[", "]"];
+---
+
+<div>
+  <span>themes: {lhs}</span>
+  <button
+    title="set theme: 'chalkboard'"
+    aria-label="set theme: 'chalkboard'"
+    class="set-theme set-theme-chalkboard"
+    data-theme="chalkboard"></button>
+  <button
+    title="set theme: 'whiteboard'"
+    aria-label="set theme: 'whiteboard'"
+    class="set-theme set-theme-whiteboard"
+    data-theme="whiteboard"></button>
+  <button
+    title="set theme: 'nerdy'"
+    aria-label="set theme: 'nerdy'"
+    class="set-theme set-theme-nerdy"
+    data-theme="nerdy"></button>
+  <span>{rhs}</span>
+</div>
+
+<style>
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    /*font-weight: bold;*/
+  }
+
+  .set-theme {
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 8px;
+
+    cursor: pointer;
+  }
+
+  /* preview buttons are a gradient square */
+  .set-theme-chalkboard {
+    background-image: linear-gradient(135deg, #333 49%, #111 51%);
+  }
+  .set-theme-whiteboard {
+    background-image: linear-gradient(135deg, #eee 49%, #666 51%);
+  }
+  .set-theme-nerdy {
+    background-image: linear-gradient(135deg, #2d2 49%, #111 51%);
+  }
+
+</style>
+
+<script>
+
+  // the theme key in local storage
+  const theme_key = "theme";
+
+  // the default theme, if none is set
+  const theme_default = "chalkboard";
+
+  // set the theme to the given name (or, sets to default if given ""/undefined/null)
+  function set_theme(theme: string) {
+    // if not given, load default from local storage or the side-wide default
+    if (!theme || theme == "") theme = localStorage.getItem(theme_key) || theme_default;
+
+    // debug this action
+    //console.log("set_theme(", theme, ")");
+
+    // set 'data-theme' on the root element, see 'src/styles/global.css' for more info
+    document.documentElement.setAttribute("data-theme", theme);
+
+    // save the theme to local storage
+    localStorage.setItem(theme_key, theme);
+  }
+
+  // now, iterate over all buttons that set the theme and add a click event listener
+  // NOTE: using 'querySelectorAll' is fine even with multiple components, since the script is bundled and only ran once, not per component
+  document.querySelectorAll(".set-theme").forEach((button) => {
+    button.addEventListener("click", () => {
+      // actually set the theme based on 'data-theme' attribute on the button
+      set_theme(button.getAttribute("data-theme")!);
+    });
+  });
+
+  // on load, set the theme to default
+  set_theme("");
+</script>

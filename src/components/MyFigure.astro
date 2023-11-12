@@ -1,0 +1,38 @@
+---
+import MyImage from "./MyImage.astro";
+import Maybe from "./Maybe.astro";
+
+const {
+  src,
+  alt,
+  caption = alt,
+  style,
+  class: className,
+  href,
+  imgStyle,
+  imgClass,
+} = Astro.props;
+
+---
+
+<figure style={style} class={className}>
+  <MyImage src={src} alt={alt} style={imgStyle} class={imgClass} href={href} />
+  <Maybe cond={caption}>
+    <figcaption>{caption}</figcaption>
+  </Maybe>
+</figure>
+
+<style>
+  figcaption {
+    margin: 0.25em;
+  }
+
+
+  /*
+  img {
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+  }
+  */
+
+</style>

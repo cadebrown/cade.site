@@ -1,0 +1,137 @@
+---
+// DefaultFooter.astro - default HTML <footer> element, with socials, theme toggle, and footer text
+//import SocialIcons from "./SocialIcons.astro";
+
+import MyIcon from "./MyIcon.astro";
+
+import ThemeToggle from "./ThemeToggle.astro";
+
+import { DEFAULT_AUTHOR, MESSAGES, SITE_AUTHOR, getAuthor } from "../consts";
+
+// get the site author data
+const author = getAuthor(SITE_AUTHOR);
+
+/*
+
+<footer>
+  <SocialIcons author={DEFAULT_AUTHOR} />
+  <ThemeToggle />
+  <span>{MESSAGES.footer}</span>
+</footer>
+
+*/
+---
+
+<footer>
+  <div class="social-wrapper">
+    <a
+      href={`mailto:${author.email}`}
+      class="social-icon social-icon-email"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <MyIcon alt="my email address" name="cade-social/email" />/{author.email}
+    </a>
+
+    <a
+      href={`https://github.com/${author.github}`}
+      class="social-icon social-icon-github"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <MyIcon alt="my GitHub account" name="cade-social/github" />/{
+        author.github
+      }
+    </a>
+
+    <a
+      href={`https://twitter.com/${author.twitter}`}
+      class="social-icon social-icon-twitter"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <MyIcon alt="my Twitter account" name="cade-social/twitter" />/@{
+        author.twitter
+      }
+    </a>
+
+    <a
+      href={`https://instagram.com/${author.instagram}`}
+      class="social-icon social-icon-instagram"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <MyIcon alt="my Instagram account" name="cade-social/instagram" />/@{
+        author.instagram
+      }
+    </a>
+  </div>
+  <ThemeToggle />
+  <span>{MESSAGES.footer}</span>
+</footer>
+<style>
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 0 3rem 0;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 110%;
+
+    color: var(--footer-text);
+    background-color: var(--footer-back);
+  }
+
+  .social-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  .social-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .social-icon-email {
+    color: var(--social-email);
+    fill:  var(--social-email);
+  }
+
+  .social-icon-github {
+    color: var(--social-github);
+    fill:  var(--social-github);
+  }
+
+  .social-icon-twitter {
+    color: var(--social-twitter);
+    fill:  var(--social-twitter);
+  }
+
+  .social-icon-instagram {
+    color: var(--social-instagram);
+    fill:  var(--social-instagram);
+  }
+
+  @media (max-width: 768px) {
+    .social-wrapper {
+      /* on small screens, stack */
+      flex-direction: column;
+    }
+  }
+
+</style>

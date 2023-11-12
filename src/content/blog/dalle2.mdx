@@ -1,0 +1,124 @@
+---
+title: "DALL-E 2 (or, the end of Human Security and Artistic Dominance)"
+description: "The timeline of AI control just sped up."
+author: "Cade Brown"
+date: "2022-04-06:00:00:00"
+keywords: "ai, art, humanity"
+image: "/images/dalle2.webp"
+---
+
+SINGULARITY ALERT - OpenAI recently announced [DALL-E 2](https://openai.com/dall-e-2), which is a revolutionary neural network that can create images given just a plaintext caption. While DALL-E 2 is currently under closed beta (I'm on the waitlist), the results are already impressive and demonstrate just how fast Artificial Intelligence (AI) and Machine Learning (ML) are advancing in 2022.
+
+**I'm writing this article to get people thinking about the ethical concerns with advancements in ML/AI. I'm not trying to convince you that it is good or bad, but merely that we should be furthering the discussion, and what risks we should be aware of, both as AI/ML developers, and citizens of an increasingly AI/ML-driven world.**
+
+This new model comes as an improvement on the original [DALL-E](https://openai.com/blog/dall-e), which was already mind-blowing at the time (even within the machine learning community). 
+
+It is my personal belief that DALL-E 2 would likely beat the "best" human artists on any benchmark, blind survey, or other metric that could define an "artist". Of course, art is complicated and can be understood differently by different people, but DALL-E 2 is trained on the entire internet -- bringing together diverse perspectives, styles, and information from various sources. It does more than any person (or team of people) could hope for. I also believe that it has the potential to change the course of human history in a negative way, if we aren't careful.
+
+This post is broadly split up into 3 frontiers that I think DALL-E has the potential to have a massive impact upon:
+
+  * [Artistic Dominance](#frontier-1-artistic-dominance)
+  * [Deepfakes](#frontier-2-deepfakes)
+  * [Human Security (and The Singularity)](http://localhost:4000/2022/dalle2#frontier-3-human-security-and-the-singularity)
+
+
+
+
+## A Gentle Introduction
+
+Okay, so if any of my readers are completely lost, here's a basic breakdown of how to understand what DALL-E 2 means:
+
+  * AI/ML models are large mathematical equations that can be modified (i.e. trained) to optimize some "cost" or "loss" function. For example, if you are training a model to classify images as dogs or cats, you would want to maximize accuracy, and minimize the number of incorrect classifications.
+  * DALL-E 2 is a [transformer (based on GPT-3)](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)) that is taught to generate image data from text descriptions, so it is taught to minimize the "error" of an image from its caption
+    * It's a little more complicated, since DALL-E does not work directly with pixel data, but rather a [latent space](https://en.wikipedia.org/wiki/Latent_space) that encodes useful features about images, and disregards "noise"
+  * The combination of these ML/AI techniques, along with large amounts of time and data spent training a large model, is what has allowed DALL-E 2 to achieve such incredible results
+
+The point of this blog post is not to explain the inner workings of DALL-E 2, but rather to explain what I think some of the short and long-term consequences of DALL-E 2 are.
+
+If you want to read up on more about DALL-E 2 and related technologies, please check out the following links:
+
+  * [Understanding Latent Space](https://towardsdatascience.com/understanding-latent-space-in-machine-learning-de5a7c687d8d)
+  * Relevant ML/AI models:
+    * [GPT-3](https://en.wikipedia.org/wiki/GPT-3), the text transformer architecture used to generate synthetic continuations
+    * [DALL-E](https://openai.com/blog/dall-e), the original AI/ML model that was used to generate images
+    * [DALL-E 2](https://openai.com/blog/dall-e-2), the new AI/ML model that was trained to generate images
+    * [HIFIC](https://hific.github.io/), a tangentially related model that uses AI to do image compression (and thus, image comprehension)
+
+
+## Frontier 1: Artistic Dominance
+
+DALL-E 2 is so precise and versatile (seriously, check out the [demos](https://openai.com/dall-e-2)) that it raises concerns about the "artistic dominance" of human artists. It can imitate famous artists and styles easily (and convincingly), and of course runs at faster speeds than a human artist (depending on how many GPUs/TPUs you can afford...). 
+
+The model can create images that are photo-realistic, or in a particular style (for example, by appending "in the style of XYZ" to the end of the prompt), and does all combinations inbetween with stunning fashion. The original DALL-E was great, but a trained eye could tell it was AI-generated. With DALL-E 2, the same cannot be said.
+
+So, I think it's pretty obvious that if DALL-E 2 has a widespread adoption and usage in popular art and digital ecosystems, it may signal the end of the human era in artistic endevours. 
+
+And, after all, why shouldn't it? I think we have hit the inflection point with AI/ML, in that now the most advanced networks can understand data better than humans (i.e. not only can they digest more data and do it faster, they also can derive more meaningful insights).
+
+
+### To The Naysayers
+
+Similar to how in years past, technology has taken over chess, math, stock trading, control loops, and other fields, DALL-E 2 is an almost un-thinkable advancement in art, a subject few people were worried about being overtaken so soon.
+
+Yet, in technological progress's usual fashion, world-changing inventions happen when we least expect them. Despite the seemingly predictable unpredictability of progress, experts have continued to make themselves look foolish in hindsight by predicting the end of progress of computers:
+
+![Moore's Law is definitely dead this time](/images/mooreslaw.webp)
+
+This is nothing new, but come on... if you think things are slowing down right now you aren't paying attention!
+
+We need to stop living in a fantasy land where even experts deny facts because they are unconfortable with the realities of technological progress (for reasons I'll focus on for the rest of this post). The truth is that human dominance in art should be the least of our concerns right now, because AI/ML is threatening human dominance in **everything**. 
+
+
+## Frontier 2: Deepfakes
+
+Of course, [deepfakes](https://en.wikipedia.org/wiki/Deepfake) have been in the zeitgeist for some time now. They are an obvious target of propagandists, who love to push distorted narratives about the world (we are, after all, living in a post-truth world). However, DALL-E 2 allows for more accurate, precise, and realistic deepfakes. It can create more engaging -- or more enraging -- images that elicit responses. Researchers can tune these models to give them the responses they want.
+
+Should courts accept image/video evidence anymore? If such evidence can be realistically edited or generated however an individual likes, then fake video can be used to frame an person for a crime they didn't commit. 
+
+How can we trust news media to show "real" footage of an event, if they might have a profit incentive to show "fake" footage? Even if they do, they can't *neccessarily* be trusted to do so.
+
+There is a certain freedom in a post-truth world; we can stop living our lives to fulfill so-called "objective" narratives. With freedom, however, comes great responsibility. If we are fabricating reality, unwell and/or gullible people will assume the fake media is real, and form distorted perceptions about the world. It should be self-evident that this would produce irreperable societal damage.
+
+As much as I would like to stop progress and allow time for humanity to "catch up", the reality is that progress is not stopping, and it's too late to just close our eyes and ears and hope for the best.
+
+Before we dive any deeper into this discussion, you should take a minute to read [OpenAI's page on Risks and Limitations of DALL-E 2](https://github.com/openai/dalle-2-preview/blob/main/system-card.md)
+
+
+### Digital Misinformation
+
+It is no secret that people can be manipulated by other people, it happens every day. Delusion might as well be our primary response, and reality is a luxury that we can't afford in our day-to-day lives. Naturally, people conglomerate around idologies, or other social structures to help make sense of the world.
+
+For instance, the King James Version (KJV) translation of the Bible is often said to be [the only "right" version](https://en.wikipedia.org/wiki/King_James_Only_movement) of the Bible. Yet, it was heavily modified by *checks notes* King James, to serve his own interests. Most people are blissfully unaware that they are being fed such a manipulated version of a text.
+
+Now, imagine an neural network ("smarter" than King James, or any other human), would it not stand to reason that the AI would also be better at manipulating humans, and in turn be harder to manipate or control by humans? Now you may understand why many AI/ML researchers are frightened of the possibility that such a machine could be used to shape human history.
+
+We could create a system which we have no control over -- which is certainly not a good idea, from traditional engineering perspectives.
+
+
+## Frontier 3: Human Security and The Singularity
+
+With the rise of ultra-intelligent machines and neural networks, we must be asking the questions of whether human or machine intelligence is superior -- and whether machines can (or already have) become more intelligent and faster-improving than humans. If machines can outpace humans, then it stands to reason that they could overtake humans, if they so desired. The  term for this is [a technological singularity](https://en.wikipedia.org/wiki/Technological_singularity) (or, simply "The Singularity").
+
+Art is great and all (shameless plug, please check out [my digital art](/art)). But we must remember that art is relatively risk-free (i.e. even the "worst" art is unlikely to bring about harm, or existential threats), and other applications of this model could reveal real risks and vulnaribilities our ideas about reality, and how secure our society is against the "rise of the machines" (an increasingly-common topic in science fiction).
+
+What would digital manipulation look like? If an AI has a vested interest to, for example, wipe out humans and hog all of Earth's resources to itself ([completely theoretical, of course](https://en.wikipedia.org/wiki/The_Matrix)), it might be the case that the AI uses everything in its control to do so, using strategies undetectable to the human intellect. Now imagine such a machine has control of our nuclear power plans, datacenters, internet connection, roads, cars, planes, other computers, and so on, and so on.
+
+A hyperintelligent AI that wants to take control of human society probably could, if we give it the right tools. This is why it's important to develop AI in a safe way.
+
+## But This Won't Happen Soon, Right?
+
+There are thousands of predictions about when machines will be so far advanced that they could take over human society -- guessing a date won't help anything. What you need to realize is that progress is **not** slowing down (despite what some researcher said in 1990s/2000s/2010s/whenever), and is in fact speeding up due to hardware, software, and algorithm design all improving.
+
+For the last ~10000 years, humanity has formed, and gone from crude societies with manual tools to automation, digital technology, and wireless communication (in fact, all 3 of those things really just happened in the last ~150 years). I think its incredibly possible that this happens, if technological growth even if it just keeps its current pace.
+
+
+## Final Notes
+
+If this interests you, I highly recommend checking out:
+
+  * [Stephen Hawking warns artificial intelligence could end mankind](https://www.bbc.com/news/technology-30290540)
+  * [Ray Kurzweil](https://en.wikipedia.org/wiki/Ray_Kurzweil), a futurist author that writes about AI, singularity, and technological progress
+  * [GLID-3 Colab Notebook](https://colab.research.google.com/drive/1x4p2PokZ3XznBn35Q5BBD6K6Zs-tot5t?usp=sharing), similar to DALL-E
+
+
+P.S.: if you thought this was science fiction or far out, about 30-40% of this article was written by [an AI](https://openai.com/blog/openai-codex/) (proofread by me, of course)

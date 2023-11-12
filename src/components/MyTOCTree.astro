@@ -1,0 +1,95 @@
+---
+// MyTOCTree.astro - helper component for 'MyTOC', just to generate a tree of links
+export type Props = {
+  headings: Array<{ depth: number; text: string; slug: string }>;
+};
+
+const { headings = [] } = Astro.props;
+---
+
+<ol>
+  {
+    headings.map((h) => {
+      //if (h.depth > 3) return null;
+      return (
+        <li class={"toc-depth-" + h.depth}>
+          {" "}
+          <a href={`#${h.slug}`}>{h.text}</a>
+        </li>
+      );
+    })
+  }
+</ol>
+
+<style>
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    /* overflow with '...' */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    /* hide the link's underline */
+    text-decoration: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  a.active {
+    color: #47fa8c;
+    font-weight: 600;
+  }
+
+  .toc-depth-1 {
+    padding-left: 0em;
+  }
+  .toc-depth-2 {
+    padding-left: 1em;
+  }
+  .toc-depth-3 {
+    padding-left: 2em;
+  }
+</style>
+<script>
+  const observerOptions = {
+    threshold: 1,
+    rootMargin: "0px 0px -66%",
+  };
+
+  const setCurrentHeading: IntersectionObserverCallback = (entries) => {
+    // loop to each entries (headings) in the page
+    for (let entry of entries) {
+      // equivalent to the slug returned from pageHeadings
+      const { id } = entry.target;
+      // get the TOC link's element for the current entry
+      const tocLinkEl = document.querySelector(`.toc a[href='#${id}']`);
+      if (!tocLinkEl) return;
+
+      // check if the entry is intersecting
+      if (entry.isIntersecting) {
+        // remove active class from all links
+        document
+          .querySelectorAll(".toc a")
+          .forEach((e) => e.classList.remove("active"));
+        // add active class to the currently active entry
+        tocLinkEl.classList.add("active");
+      }
+    }
+  };
+  const observer = new IntersectionObserver(setCurrentHeading, observerOptions);
+  // select all headings to observe
+  const elToObserve = document.querySelectorAll("article :is(h1,h2,h3)");
+  // finally, observe the elements
+  elToObserve.forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,91 @@
+---
+import DefaultLayout from "./DefaultLayout.astro";
+
+import MyImage from "../components/MyImage.astro";
+
+import MyTOC from "../components/MyTOC.astro";
+
+import FormatAuthor from "../components/FormatAuthor.astro";
+import FormatDate from "../components/FormatDate.astro";
+import FormatKeywords from "../components/FormatKeywords.astro";
+
+const { frontmatter, headings } = Astro.props;
+
+const { title, description, author, date, keywords, image } = frontmatter;
+
+/*
+  <header>
+    <h1 class="post-title">{title}</h1>
+    <p>
+      by <b><FormatAuthor author={author} /></b>
+      on <b><FormatDate date={date} /></b>
+      <FormatKeywords keywords={keywords} />
+    </p>
+    <hr />
+  </header>
+*/
+---
+
+<DefaultLayout frontmatter={frontmatter}>
+  {image && <MyImage class="post-image" src={image} alt="" />}
+
+  <header>
+    <h1 class="post-title">{title}</h1>
+    <p>
+      by <b><FormatAuthor author={author} /></b>
+    </p>
+    <hr />
+  </header>
+
+  <article>
+    <MyTOC headings={headings} />
+    <section>
+      <p>{description}</p>
+      <slot />
+    </section>
+  </article>
+</DefaultLayout>
+
+<style is:global>
+  .post-image {
+    height: 35vh;
+    max-height: 40vh;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+
+<style>
+  header {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  article {
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-title {
+    margin: 0;
+    padding: 0;
+
+    font-weight: bold;
+  }
+
+  @media (min-width: 1000px) {
+    article {
+      /* on large screens, stack side by side */
+      flex-direction: row-reverse;
+      gap: 0.5rem;
+    }
+
+    .post-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

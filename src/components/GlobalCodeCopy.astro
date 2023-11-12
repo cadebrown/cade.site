@@ -1,0 +1,70 @@
+---
+// GlobalCodeCopy.astro - helper component that adds a copy button to all code block
+//
+// NOTE: since this is 'global', it should only be included once per page! (should go in your base layout file)
+// FROM: https://timneubauer.dev/blog/copy-code-button-in-astro/
+//
+// @author: Cade Brown <me@cade.site>
+---
+
+<script>
+  // labels for the button
+  const labelCopy = "Copy Code";
+  const labelCopied = "Copied!";
+
+  // iterate over all 'pre' elements
+  //pre
+  for (let code of document.querySelectorAll("pre")) {
+  //for (let code of document.querySelectorAll(".astro-code")) {
+    // create a relative wrapper for positioning
+    let wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+
+    // create a button that can be clicked
+    let button = document.createElement("button");
+    button.className = "code-copy";
+    button.innerHTML = labelCopy;
+
+    // for accessibility
+    code.setAttribute("tabindex", "0");
+    code.appendChild(button);
+
+    // wrap the code block with a relative parent element
+    code.parentNode.insertBefore(wrapper, code);
+    wrapper.appendChild(code);
+
+
+    // add listener that actually handles the click
+    button.addEventListener("click", async () => {
+      // get the full text of the code
+      let block = code.querySelector("code");
+      let text = block.innerText;
+
+      // use the Clipboard API to copy it to the clipboard
+      await navigator.clipboard.writeText(text);
+
+      // visual feedback that task is completed
+      button.innerText = labelCopied;
+
+      // revert to normal button after 1 second
+      setTimeout(() => {
+        button.innerText = labelCopy;
+      }, 1000);
+    });
+  }
+</script>
+<style is:global>
+  .code-copy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3730a3;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .code-copy:hover {
+    background-color: #312e81;
+  }
+</style>

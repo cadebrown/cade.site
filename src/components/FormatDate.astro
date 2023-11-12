@@ -1,0 +1,11 @@
+---
+// FormatDate.astro - date formatter component, see 'src/consts.ts' for the helper function
+import { formatDate } from "../consts";
+
+const { date } = Astro.props;
+
+// ensure it's a Date object
+const value = new Date(date);
+---
+
+<time datetime={value.toISOString()}>{formatDate(value)}</time>

@@ -1,0 +1,87 @@
+---
+// DefaultHeader.astro - default HTML <header> element, with a <nav> inside
+import MyImage from "./MyImage.astro";
+
+import { NAVIGATION, SITE_TITLE, SITE_LINK } from "../consts";
+
+// the current page's URL path
+const { pathname } = Astro.url;
+
+// the name of the site, stripped of extra slashes
+let name = SITE_LINK;
+name = name.replace(/^https?:\/\//, "");
+---
+
+<nav>
+  <MyImage href="/" alt={SITE_TITLE} src="/images/site/icon.webp" class="header-image" />
+  {
+    NAVIGATION.map(({ text, link, class: baseclass }) => {
+      // check whether this navigation element is the active page
+      const is_active =
+        link !== "/" &&
+        (link === pathname || link === pathname.replace(/\/$/, ""));
+
+      // the classes to apply to this navigation element
+      let classes = baseclass;
+
+      // add the "active" class if this is the active page
+      if (is_active) classes += " active";
+
+      // create a link to this page
+      return (
+        <a href={link} class={classes}>
+          {text}
+        </a>
+      );
+    })
+  }
+</nav>
+
+<style is:global>
+.header-image {
+  padding: 0;
+  margin: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+}
+</style>
+
+<style>
+  nav {
+    color: var(--nav-text);
+    background: var(--nav-back);
+
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.7em;
+
+    padding: 0.5em;
+    margin: 0;
+
+    align-items: center;
+
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  a {
+    font-size: 1.2em;
+    color: var(--nav-link);
+  }
+
+  a.active {
+    /* if this is the active page, underline it */
+    text-decoration: underline;
+  }
+
+  /* on small screens, stack column wise */
+  @media (max-width: 768px) {
+    nav {
+      gap: 0.6em;
+      font-size: 1.04em;
+    }
+  }
+</style>
