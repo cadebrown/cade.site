@@ -69,25 +69,11 @@ const author = getAuthor(SITE_AUTHOR);
   <ThemeToggle />
   <span>{MESSAGES.footer}</span>
 </footer>
-<style>
-  footer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem 0 3rem 0;
 
-    align-items: center;
-    justify-content: center;
 
-    text-align: center;
+<style is:global>
 
-    font-size: 110%;
-
-    color: var(--footer-text);
-    background-color: var(--footer-back);
-  }
-
-  .social-wrapper {
+.social-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -133,5 +119,27 @@ const author = getAuthor(SITE_AUTHOR);
       flex-direction: column;
     }
   }
+
+</style>
+
+<style>
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 0 3rem 0;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 110%;
+
+    color: var(--footer-text);
+    background-color: var(--footer-back);
+  }
+
+
 
 </style>
