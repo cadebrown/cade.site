@@ -9,16 +9,14 @@ You can read about how I build it [here](https://cade.site/how-i-built-this-webs
 ## Links
 
   * [Near Computronium (cade.site)](https://cade.site): this website, hosted with GitHub Pages
-  * [Astro docs](https://docs.astro.build)
-  * [Astro Icons](https://github.com/natemoo-re/astro-icon#readme): icon package, uses local icons in `src/icons`
-  * [Astro + KaTeX: rendering math equations](https://ileumas.com/writing/2022/03/astro-math-katex/)
-  * [accessible-astro-components](https://www.npmjs.com/package/accessible-astro-components)
-  * [jampack](https://jampack.divriots.com/installation/): for optimization post processing
-  * [web.dev: Defer Non-Critical CSS](https://web.dev/defer-non-critical-css/)
+  * [Astro Documentation](https://docs.astro.build): site generator used
+    * [Astro Icons](https://github.com/natemoo-re/astro-icon#readme): icon package, uses local icons in `src/icons`
+    * [Astro + KaTeX: rendering math equations](https://ileumas.com/writing/2022/03/astro-math-katex/) - for math equations in `$$` blocks
+    * [Astro: accessible-astro-components](https://www.npmjs.com/package/accessible-astro-components)
   * [Adding a Copy Code Button in Astro](https://timneubauer.dev/blog/copy-code-button-in-astro/)
   * [Holy grail layout](https://web.dev/patterns/layout/holy-grail/)
-  * [HTML Element Reference](https://www.w3schools.com/tags/ref_byfunc.asp)
   * [Jam Icons (free SVGs)](https://jam-icons.com/)
+  * [HTML Element Reference](https://www.w3schools.com/tags/ref_byfunc.asp)
 
 ## Setup
 

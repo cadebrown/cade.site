@@ -30,7 +30,7 @@
     code.appendChild(button);
 
     // wrap the code block with a relative parent element
-    code.parentNode.insertBefore(wrapper, code);
+    if (code.parentNode) code.parentNode.insertBefore(wrapper, code);
     wrapper.appendChild(code);
 
 
@@ -38,7 +38,7 @@
     button.addEventListener("click", async () => {
       // get the full text of the code
       let block = code.querySelector("code");
-      let text = block.innerText;
+      let text = block ? block.innerText : code.innerText;
 
       // use the Clipboard API to copy it to the clipboard
       await navigator.clipboard.writeText(text);
